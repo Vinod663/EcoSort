@@ -1,0 +1,42 @@
+.table-row-cell:odd {
+    -fx-background-color: #D0E7D2; /* Light green for even rows */
+}
+
+.table-row-cell:even {
+    -fx-background-color: #FFFFFF; /* White for odd rows */
+}
+
+.table-column-header-background {
+    -fx-background-color: #22C55E; /* Green color for header */
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color:  #22C55E;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* Add this section for selection highlighting */
+.table-row-cell:selected {
+    -fx-background-color:  #68DC92; /* Light blue for selected row */
+    -fx-text-fill: black; /* Black text color for selected row */
+    -fx-font-weight: bold;
+}
+
+.table-cell:selected {
+    -fx-background-color:  #68DC92; /* Light blue for selected cell */
+    -fx-text-fill: black; /* Black text color for selected cell */
+    -fx-font-weight: bold;
+}
+
+.table-column-header-background:selected {
+    -fx-background-color: #68DC92; /* Light blue for selected column header */
+}
+
+    .table-row-cell {
+        -fx-text-fill: black; /* Default text color for rows */
+}
+
+/*.table-view .table-cell {*/
+/*    -fx-alignment: CENTER; !* Center alignment for all cells *!*/
+/*}*/

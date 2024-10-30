@@ -1,0 +1,34 @@
+/* Base Bubble Button Style */
+.button {
+    -fx-text-fill: white; /* Text color */
+    -fx-font-size: 15px; /* Font size */
+    -fx-font-weight: bold;
+    -fx-padding: 10px; /* Padding */
+    -fx-background-radius: 10px; /* Highly rounded corners to create bubble effect */
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-color:
+            linear-gradient(to bottom, #f2f2f2, #d6d6d6), /* Glossy light highlight */
+            linear-gradient(to bottom, #4a4a4a, #000000), /* Base button color */
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1)); /* Subtle shine */
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 6, 0.3, 0, 3); /* Softer white shadow */
+    -fx-cursor: hand; /* Cursor changes to hand when hovering */
+    -fx-transition: all 0.3s ease-in-out; /* Smooth transitions */
+}
+
+/* Pressed Effect */
+.button:pressed {
+    -fx-background-color:
+            linear-gradient(to bottom, #d6d6d6, #f2f2f2), /* Inverted glossy highlight */
+            linear-gradient(to bottom, #000000, #4a4a4a); /* Darkened base button */
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.6), 4, 0.4, 0, 2); /* Smaller white shadow when pressed */
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Hover Effect */
+.button:hover {
+    -fx-background-color:
+            linear-gradient(to bottom, #eaeaea, #cccccc), /* Brighter base on hover */
+            linear-gradient(to bottom, #4a4a4a, #000000);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 8, 0.3, 0, 5); /* Larger, softer white shadow on hover */
+}

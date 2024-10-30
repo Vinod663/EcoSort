@@ -1,0 +1,15 @@
+/* VBox Hover Effect */
+.image-container {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, transparent, 0, 0, 0, 0); /* No shadow by default */
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: all 0.3s ease; /* Smooth transition */
+}
+
+.image-container:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 4); /* Adds shadow on hover */
+    -fx-scale-x: 1.05; /* Slightly scales the VBox */
+    -fx-scale-y: 1.05;
+}

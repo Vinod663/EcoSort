@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="HomeAnchor" prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.MunicipalController">
+   <children>
+      <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <children>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="779.0">
+               <children>
+                  <Label alignment="CENTER" focusTraversable="false" text="PENCAPAIAN ECOSORT" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teknologi EcoSort dirancang untuk memilah sampah berdasarkan jenisnya melalui foto sampah yang diunggah, serta memberikan informasi tentang lokasi, kapasistas, dan jadwal TPS/TPA di berbagai daerah di Indonesia." textAlignment="CENTER" wrappingWidth="776.5367369651794" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="779.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="57.0" prefWidth="537.0" style="-fx-background-color: #22C55E; -fx-background-radius: 10px 10px 10px 10px;">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Shedule Waste Collection" textAlignment="CENTER" wrappingWidth="118.98200225830078">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-100.0" endY="55.6928825378418" startX="-100.0" stroke="WHITE" />
+                        <Text fill="WHITE" layoutX="276.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate Reports" textAlignment="CENTER" wrappingWidth="118.98200225830078">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-100.0" endY="55.6928825378418" layoutX="435.0" layoutY="11.0" startX="-100.0" stroke="WHITE" />
+                        <Text fill="WHITE" layoutX="336.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Recycling" textAlignment="CENTER" wrappingWidth="118.98200225830078">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Line endX="-100.0" endY="55.6928825378418" layoutX="496.0" layoutY="11.0" startX="-100.0" stroke="WHITE" />
+                        <Text fill="WHITE" layoutX="396.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Track Inventory" textAlignment="CENTER" wrappingWidth="107.78199005126953">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="42.0" prefWidth="779.0">
+               <children>
+                  <Button fx:id="SheduleBtn" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#SheduleBtnAction" prefHeight="10.0" style="-fx-background-color: #15B392;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Shedule Collection" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="LogWasteBtn" alignment="CENTER" layoutX="320.0" layoutY="16.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#LogWasteBtnAction" prefHeight="10.0" style="-fx-background-color: #16423C;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Log the Waste" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="TrackInventoryBtn" alignment="CENTER" layoutX="416.0" layoutY="16.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#TrackInventoryBtnAction" prefHeight="10.0" style="-fx-background-color: #347928;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Track Inventory" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="MunicipalTable" focusTraversable="false" onMouseClicked="#OnClickTable" prefHeight="295.0" prefWidth="779.0" VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn fx:id="MunIdCol" prefWidth="75.0" text="Municipal ID" />
+                <TableColumn fx:id="MunNameCol" prefWidth="75.0" text="Municipal Name" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <stylesheets>
+                  <URL value="@../CSS%20Styles/Table%20Styles/TableColorFill.css" />
+                  <URL value="@../CSS%20Styles/Table%20Styles/TableTopic.css" />
+               </stylesheets>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
