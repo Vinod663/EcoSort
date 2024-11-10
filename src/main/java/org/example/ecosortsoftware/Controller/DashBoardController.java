@@ -6,13 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.ecosortsoftware.DTO.EmployeeDto;
 import org.example.ecosortsoftware.DTO.MunicipalDto;
 import org.example.ecosortsoftware.DTO.Tm.MunicipalTm;
 import org.example.ecosortsoftware.Model.MunicipalModel;
@@ -29,6 +27,9 @@ public class DashBoardController implements Initializable {
     public AnchorPane contentAnchorPane;
     public AnchorPane Content;
     public Button HomeBtn;
+    public Button EmployeeBtn;
+    public Button VehicleManageBtn;
+    public Button SheduleBtn;
     @FXML
     private Button LogOutBtn;
 
@@ -82,5 +83,47 @@ public class DashBoardController implements Initializable {
 
     public void HomeBtnAction(ActionEvent actionEvent) {
         navigateTo("/View/MunicipalView.fxml");
+    }
+    MunicipalController municipalController=new MunicipalController();
+
+    public void EmployeeBtnAction(ActionEvent actionEvent) {
+        if(municipalController.getMunicipalId()==null){
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+        System.out.println(municipalController.getMunicipalId());
+        navigateTo("/View/Employee.fxml");
+    }
+
+    public void VehicleManageAction(ActionEvent actionEvent) {
+        if(municipalController.getMunicipalId()==null){
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+        System.out.println(municipalController.getMunicipalId());
+        navigateTo("/View/Vehicle.fxml");
+    }
+
+    public void SheduleAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        SheduleController sheduleController=new SheduleController();
+
+        boolean check = sheduleController.check();
+        System.out.println(check);
+
+
+        if(municipalController.getMunicipalId()==null){
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+        if(!check){
+//            SheduleBtn.setDisable(true);
+            new Alert(Alert.AlertType.ERROR, "Enter Schedule Collection Button In Home Page First!", ButtonType.OK).show();
+            return;
+        }
+
+
+        System.out.println(municipalController.getMunicipalId());
+        navigateTo("/View/ShedulePage.fxml");
+
     }
 }

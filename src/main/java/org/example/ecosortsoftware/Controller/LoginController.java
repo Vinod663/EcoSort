@@ -41,7 +41,7 @@ public class LoginController {
         String EnteredUsername = UserNameTxtId.getText();
         String EnteredPassword = PswFieldId.getText();
 
-        if (loginModel.authenticate(EnteredUsername, EnteredPassword)) {
+//        if (loginModel.authenticate(EnteredUsername, EnteredPassword)) {//////temporary........*************
             System.out.println("Login successful!");
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Dashboard.fxml"));
@@ -74,29 +74,29 @@ public class LoginController {
 //            AnchorPane loginPane = FXMLLoader.load(getClass().getResource("/View/Dashboard.fxml"));
 //            ancLogin.getChildren().add(loginPane);
 
-        }
+//        } //Temporary..................******************
 
-        else {
-
-            if(loginModel.authenticateUsername(EnteredUsername)) {
-                UserNameTxtId.setStyle("-fx-text-box-border: green; -fx-text-inner-color: green;");
-                PswFieldId.setStyle("-fx-text-box-border: red; -fx-text-inner-color: red;");
-            }
-
-            else{
-
-                PswFieldId.setStyle("-fx-text-box-border: red; -fx-text-inner-color: red;");
-                UserNameTxtId.setStyle("-fx-text-box-border: red; -fx-text-inner-color: red;");
-            }
-
-//            if (loginModel.authenticatePsw(EnteredPassword)&&loginModel.authenticateUsername(EnteredUsername)) {
+//        else {// Temporary...........................*************
 //
-//                PswFieldId.setStyle("-fx-text-box-border: green; -fx-text-inner-color: green;");
+//            if(loginModel.authenticateUsername(EnteredUsername)) {
 //                UserNameTxtId.setStyle("-fx-text-box-border: green; -fx-text-inner-color: green;");
+//                PswFieldId.setStyle("-fx-text-box-border: red; -fx-text-inner-color: red;");
 //            }
-
-
-        }
+//
+//            else{
+//
+//                PswFieldId.setStyle("-fx-text-box-border: red; -fx-text-inner-color: red;");
+//                UserNameTxtId.setStyle("-fx-text-box-border: red; -fx-text-inner-color: red;");
+//            }
+//
+////            if (loginModel.authenticatePsw(EnteredPassword)&&loginModel.authenticateUsername(EnteredUsername)) {// not Temporary
+////
+////                PswFieldId.setStyle("-fx-text-box-border: green; -fx-text-inner-color: green;");
+////                UserNameTxtId.setStyle("-fx-text-box-border: green; -fx-text-inner-color: green;");
+////            }
+//
+//
+//        }
     }
 
 

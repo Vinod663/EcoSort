@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="HomeAnchor" prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.MunicipalController">
    <children>
       <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -23,7 +22,7 @@
          <children>
             <HBox alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="779.0">
                <children>
-                  <Label alignment="CENTER" focusTraversable="false" text="PENCAPAIAN ECOSORT" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                  <Label alignment="CENTER" focusTraversable="false" text="Welcome to EcoSort! 🌎 " textAlignment="CENTER" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font>
@@ -32,7 +31,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teknologi EcoSort dirancang untuk memilah sampah berdasarkan jenisnya melalui foto sampah yang diunggah, serta memberikan informasi tentang lokasi, kapasistas, dan jadwal TPS/TPA di berbagai daerah di Indonesia." textAlignment="CENTER" wrappingWidth="776.5367369651794" HBox.hgrow="ALWAYS">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EcoSort equips your council with smart tools to schedule waste pickup, boost recycling, and track resources—building a greener, more vibrant community together♻." textAlignment="CENTER" wrappingWidth="776.5367369651794" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>

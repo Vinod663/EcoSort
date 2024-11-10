@@ -6,6 +6,7 @@ module org.example.ecosortsoftware {
     requires java.base;
 
 
+
     opens org.example.ecosortsoftware.Controller to javafx.fxml;
     opens org.example.ecosortsoftware.DTO.Tm to javafx.base;
     //opens org.example.ecosortsoftware.DTO.TM to java.base;

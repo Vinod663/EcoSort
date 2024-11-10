@@ -28,7 +28,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="26.0" style="-fx-background-color: #22C55E;" stylesheets="@../CSS%20Styles/ToolBarBtn.css" text="Waste-Manage" textFill="WHITE">
+                        <Button fx:id="EmployeeBtn" mnemonicParsing="false" onAction="#EmployeeBtnAction" prefHeight="26.0" style="-fx-background-color: #22C55E;" stylesheets="@../CSS%20Styles/ToolBarBtn.css" text="Employee Manage" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -36,7 +36,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button layoutX="117.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-color: #22C55E;" stylesheets="@../CSS%20Styles/ToolBarBtn.css" text="Recycle" textFill="WHITE">
+                        <Button fx:id="VehicleManageBtn" layoutX="117.0" layoutY="15.0" mnemonicParsing="false" onAction="#VehicleManageAction" prefHeight="26.0" style="-fx-background-color: #22C55E;" stylesheets="@../CSS%20Styles/ToolBarBtn.css" text="Vehicle Manage" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
@@ -44,7 +44,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button layoutX="211.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" style="-fx-background-color: #22C55E;" stylesheets="@../CSS%20Styles/ToolBarBtn.css" text="Shedule" textFill="WHITE">
+                        <Button fx:id="SheduleBtn" layoutX="211.0" layoutY="15.0" mnemonicParsing="false" onAction="#SheduleAction" prefHeight="26.0" style="-fx-background-color: #22C55E;" stylesheets="@../CSS%20Styles/ToolBarBtn.css" text="Shedule" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

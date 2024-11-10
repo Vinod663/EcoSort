@@ -6,16 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.ecosortsoftware.DTO.EmployeeDto;
 import org.example.ecosortsoftware.DTO.MunicipalDto;
+import org.example.ecosortsoftware.DTO.SheduleDto;
 import org.example.ecosortsoftware.DTO.Tm.MunicipalTm;
 import org.example.ecosortsoftware.Model.MunicipalModel;
+import org.example.ecosortsoftware.Model.SheduleModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,12 +47,36 @@ public class MunicipalController implements Initializable {
 
     @FXML
     void OnClickTable(MouseEvent event) {
-
+        MunicipalTm selectedMunicipal = MunicipalTable.getSelectionModel().getSelectedItem();
+        munId=selectedMunicipal.getMunicipalId();
     }
 
+    static boolean checkShedule;
+    static String munId;
+//    EmployeeDto employeeDto=new EmployeeDto();
     @FXML
-    void SheduleBtnAction(ActionEvent event) {
+    void SheduleBtnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        MunicipalTm selectedMunicipal = MunicipalTable.getSelectionModel().getSelectedItem();
+        if (selectedMunicipal == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+//         munId=selectedMunicipal.getMunicipalId();
+        //employeeDto.setDivisionId(munId);
+
+        //System.out.println(munId);
+
+        SheduleModel sheduleModel = new SheduleModel();
+        checkShedule = sheduleModel.checkMunicipalData(munId);
+        System.out.println("checkShedule after checkMunicipalData call: " + checkShedule);
         navigateTo("/View/ShedulePage.fxml");
+
+    }
+    public boolean checkShedule() {
+        return checkShedule;
+    }
+    public String getMunicipalId() {
+        return munId;
     }
 
     @FXML
@@ -88,7 +112,7 @@ public class MunicipalController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
+        munId=null;
     }
 
     public void navigateTo(String fxmlPath) {
