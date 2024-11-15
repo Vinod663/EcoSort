@@ -81,7 +81,13 @@ public class MunicipalController implements Initializable {
 
     @FXML
     void TrackInventoryBtnAction(ActionEvent event) {
+        MunicipalTm selectedMunicipal = MunicipalTable.getSelectionModel().getSelectedItem();
+        if (selectedMunicipal == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
 
+        navigateTo("/View/Inventory.fxml");
     }
 
     public void loadTable() throws SQLException, ClassNotFoundException {
@@ -113,6 +119,7 @@ public class MunicipalController implements Initializable {
             throw new RuntimeException(e);
         }
         munId=null;
+
     }
 
     public void navigateTo(String fxmlPath) {

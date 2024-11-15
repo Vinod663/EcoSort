@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,15 +12,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.EmployeeController">
    <children>
+      <AnchorPane prefHeight="232.0" prefWidth="800.0" />
       <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
          </padding>
          <children>
-            <VBox prefHeight="175.0" prefWidth="760.0" spacing="5.0">
+            <VBox prefHeight="161.0" prefWidth="760.0" spacing="5.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="760.0">
                      <children>
@@ -36,16 +35,9 @@
                            </font>
                         </Label>
                      </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="760.0">
-                     <children>
-                        <Label prefWidth="205.0" text="Ward Name" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="WardNameCombo" prefHeight="32.0" prefWidth="210.0" promptText=" Ward name" style="-fx-background-color: #22C55E;" />
-                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="36.0" prefWidth="760.0">
                      <children>
@@ -56,6 +48,22 @@
                         </Label>
                         <TextField fx:id="NameText" prefHeight="32.0" prefWidth="323.0" />
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="61.0" prefHeight="36.0" prefWidth="760.0">
+                     <children>
+                        <Label prefWidth="205.0" text="Phone Number" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="PhoneNumberText" prefHeight="27.0" prefWidth="212.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="92.0" prefHeight="36.0" prefWidth="760.0">
                      <children>
@@ -66,15 +74,26 @@
                         </Label>
                         <TextField fx:id="EmailText" prefHeight="32.0" prefWidth="374.0" />
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="760.0">
                <children>
+                  <Button fx:id="ResetBtn" mnemonicParsing="false" onAction="#ResetBtnAction" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #FC5C65;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Reset" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#DeleteBtnAction" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #c0392b;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Delete" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Button>
                   <Button fx:id="updateBtn" layoutX="660.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateBtnAction" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #3498db;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Update" textFill="WHITE">
                      <font>
@@ -94,12 +113,12 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="EmployeeTable" prefHeight="209.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="EmployeeTable" onMouseClicked="#EmployeeTableClickAction" prefHeight="209.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="IdColumn" prefWidth="121.60000610351562" text="Employee Id" />
-                <TableColumn fx:id="nameColumn" prefWidth="164.0" text="Employee Name" />
-                  <TableColumn fx:id="divisionColumn" prefWidth="176.0" text="Division" />
-                  <TableColumn fx:id="emailColumn" prefWidth="296.79998779296875" text="Email" />
+                <TableColumn fx:id="IdColumn" prefWidth="149.0" text="Employee Id" />
+                <TableColumn fx:id="nameColumn" prefWidth="191.0" text="Employee Name" />
+                  <TableColumn fx:id="emailColumn" prefWidth="288.0" text="Email" />
+                  <TableColumn fx:id="PhoneNumberCol" prefWidth="173.0" text="Phone Number" />
               </columns>
                <stylesheets>
                   <URL value="@../CSS%20Styles/Table%20Styles/TableColorFill.css" />

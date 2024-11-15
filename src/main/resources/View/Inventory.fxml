@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.InventoryController">
+   <children>
+      <AnchorPane prefHeight="464.0" prefWidth="800.0" style="-fx-background-color: #91d4ac;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="464.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="760.0">
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="247.0" text="Inventory Id">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="inventoryIdLabel" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="247.0" text="I001" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="760.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="248.0" text="Status">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="statusLab" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" text="Active" textFill="#0c843c" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="30.0" layoutY="55.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="760.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="248.0" text="Waste Capacity(T)">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="wasteCapacityText" focusTraversable="false" prefHeight="34.0" prefWidth="228.0" promptText="0000" style="-fx-background-color: #91d4ac;">
+                           <font>
+                              <Font size="15.5" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="152.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#SaveBtnAction" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #2ecc71;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="16.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </HBox>
+                  <Label prefHeight="19.0" prefWidth="367.0" style="-fx-background-color: #2ecc71; -fx-border-color: #000000; -fx-border-radius: 10px 10px 0 0; -fx-background-radius: 10px 10px 0 0;" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" maxHeight="500.0" prefHeight="286.0" prefWidth="288.0" style="-fx-background-color: #2ecc71; -fx-border-color: #000000; -fx-border-radius: 0px 0px 10px 10px; -fx-background-radius: 0px 0px 10px 10px;" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <graphic>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="330.0" prefWidth="305.0">
+                           <children>
+                              <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="424.0">
+                                 <children>
+                                    <Label fx:id="currentWasteCapacityLab" alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="375.0" text="0000" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="34.0" prefWidth="333.0" text="(Tons)" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="198.0" maxWidth="1.7976931348623157E308" prefHeight="7.0" prefWidth="424.0">
+                                 <children>
+                                    <Line endX="-333.1938781738281" endY="-3.934798002243042" startX="-142.4222869873047" startY="-3.9347827434539795" stroke="WHITE" strokeWidth="4.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="424.0">
+                                 <children>
+                                    <Label fx:id="wasteCapacityLab" alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="375.0" text="0000" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="34.0" prefWidth="333.0" text="(Tons)" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

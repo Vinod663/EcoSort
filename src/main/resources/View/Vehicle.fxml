@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.VehicleController">
    <children>
+      <AnchorPane prefHeight="260.0" prefWidth="807.0" styleClass="anchor-pane-background" stylesheets="@../CSS%2520Styles/backgroundStyles/VehicleBackground.css" />
       <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="194.0" prefWidth="760.0" spacing="5.0">
@@ -51,7 +51,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="employeeIdCombo" prefHeight="32.0" prefWidth="165.0" style="-fx-background-color: #22C55E;" />
+                        <ComboBox fx:id="employeeIdCombo" onAction="#EmployeeComboAction" prefHeight="32.0" prefWidth="165.0" style="-fx-background-color: #22C55E;" />
                         <Label layoutX="10.0" layoutY="18.0" prefHeight="26.0" prefWidth="132.0" text="Employee Name">
                            <font>
                               <Font name="System Bold" size="16.0" />
@@ -60,7 +60,11 @@
                               <Insets left="15.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="employeeNameText" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="245.0" />
+                        <Label fx:id="EmployeeNameLabe" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="252.0" style="-fx-border-color: #000000; -fx-border-width: 0 0 1px 0;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="103.0" prefHeight="41.0" prefWidth="760.0">
@@ -77,12 +81,17 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="760.0">
                <children>
+                  <Button fx:id="ResetBtn" mnemonicParsing="false" onAction="#ResetBtnAction" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #FC5C65;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Reset" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="DeleteBtn" mnemonicParsing="false" onAction="#DeleteBtnAction" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #c0392b;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Delete" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="UpdateBtn" layoutX="631.0" layoutY="10.0" mnemonicParsing="false" onAction="#UpdateBtnAction" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #3498db;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Update" textFill="WHITE">
@@ -103,7 +112,7 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="VehicleTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="VehicleTable" onMouseClicked="#VehicleTableClickAction" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="vehicleIdCol" prefWidth="164.800048828125" text="Vehicle Id" />
                 <TableColumn fx:id="VehicleTypeCol" prefWidth="194.39996337890625" text="Vehicle Type" />

@@ -1,0 +1,7 @@
+/* styles.css */
+.anchor-pane-background {
+    -fx-background-image: url("/Images/GarbageTruck.png"); /* Replace with your image path */
+    -fx-background-size: cover; /* Makes the image cover the AnchorPane */
+    -fx-background-position: center center; /* Centers the image */
+    -fx-background-repeat: no-repeat; /* Prevents image repetition */
+}

@@ -7,11 +7,12 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
+public class VehicleDto {
+    private String vehicleId;
     private String employeeId;
-    private String employeeName;
-    private String Email;
-    private String municipalId;
-    private String phoneNumber;
+    private String licensePlate;
+    private String vehicleType;
+    private String MunicipalId;
+
 
 }

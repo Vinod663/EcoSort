@@ -1,4 +1,4 @@
-package org.example.ecosortsoftware.DTO;
+package org.example.ecosortsoftware.DTO.Tm;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDto {
+public class EmployeeTm {
     private String employeeId;
     private String employeeName;
     private String Email;
