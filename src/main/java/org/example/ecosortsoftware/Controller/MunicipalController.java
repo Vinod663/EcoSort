@@ -42,7 +42,13 @@ public class MunicipalController implements Initializable {
 
     @FXML
     void LogWasteBtnAction(ActionEvent event) {
+        MunicipalTm selectedMunicipal = MunicipalTable.getSelectionModel().getSelectedItem();
+        if (selectedMunicipal == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
 
+        navigateTo("/View/WasteCollection.fxml");
     }
 
     @FXML

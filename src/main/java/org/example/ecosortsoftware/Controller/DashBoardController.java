@@ -30,6 +30,7 @@ public class DashBoardController implements Initializable {
     public Button EmployeeBtn;
     public Button VehicleManageBtn;
     public Button SheduleBtn;
+    public Button ComplaintBtn;
     @FXML
     private Button LogOutBtn;
 
@@ -125,5 +126,14 @@ public class DashBoardController implements Initializable {
         System.out.println(municipalController.getMunicipalId());
         navigateTo("/View/ShedulePage.fxml");
 
+    }
+
+    public void ComplainBtnAction(ActionEvent actionEvent) {
+        if(municipalController.getMunicipalId()==null){
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+        System.out.println(municipalController.getMunicipalId());
+        navigateTo("/View/Complaints.fxml");
     }
 }

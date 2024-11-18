@@ -10,7 +10,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.InventoryController">
    <children>
       <AnchorPane prefHeight="464.0" prefWidth="800.0" style="-fx-background-color: #91d4ac;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -80,11 +79,43 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="16.0" />
+                        <Insets bottom="5.0" />
                      </VBox.margin>
                      <padding>
                         <Insets right="20.0" />
                      </padding>
+                  </HBox>
+                  <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="32.0" prefWidth="760.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="248.0" text="Deploy Waste (T)">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="deployWasteText" focusTraversable="false" prefHeight="34.0" prefWidth="228.0" promptText="0000" style="-fx-background-color: #91d4ac;">
+                           <font>
+                              <Font size="15.5" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="152.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="deployBtn" mnemonicParsing="false" onAction="#DeployBtnAction" prefHeight="34.0" prefWidth="132.0" style="-fx-background-color: #F79F1F;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Deploy" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
                   </HBox>
                   <Label prefHeight="19.0" prefWidth="367.0" style="-fx-background-color: #2ecc71; -fx-border-color: #000000; -fx-border-radius: 10px 10px 0 0; -fx-background-radius: 10px 10px 0 0;" VBox.vgrow="ALWAYS">
                      <VBox.margin>

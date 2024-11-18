@@ -27,4 +27,13 @@ public class InventoryModel {
         return CrudUtill.execute("update inventory set inventory_id=?, waste_amount=?, status=?, capacity=? where municipalId=?",
                 inventoryDto.getInventoryId(),inventoryDto.getWasteAmount(),inventoryDto.getStatus(),inventoryDto.getCapacity(),inventoryDto.getMunicipalId());
     }
+
+    public double getInventoryCapacity(String inventoryId) throws SQLException, ClassNotFoundException {
+        ResultSet resultSet = CrudUtill.execute("select capacity from inventory where inventory_id=? order by inventory_id desc limit 1",inventoryId);
+        if (resultSet.next()) {
+            return resultSet.getDouble("capacity");
+        }
+        return 0;
+    }
+
 }

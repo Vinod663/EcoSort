@@ -1,7 +1,9 @@
 package org.example.ecosortsoftware.Model;
 
+import org.example.ecosortsoftware.DTO.EmployeeDto;
 import org.example.ecosortsoftware.DTO.Tm.SheduleTm;
 import org.example.ecosortsoftware.DTO.Tm.WardTm;
+import org.example.ecosortsoftware.DTO.WardDto;
 import org.example.ecosortsoftware.Utill.CrudUtill;
 
 import java.sql.ResultSet;
@@ -32,5 +34,17 @@ public class WardModel {
             wardNames.add(result.getString("name"));
         }
         return wardNames;
+    }
+
+    public WardDto FindById(String selectedId) throws SQLException, ClassNotFoundException {
+        ResultSet rst = CrudUtill.execute("select * from division where division_id=?", selectedId);
+        if (rst.next()) {
+            return new WardDto(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3)
+            );
+        }
+        return null;
     }
 }
