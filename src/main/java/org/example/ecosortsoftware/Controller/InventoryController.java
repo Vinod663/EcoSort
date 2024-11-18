@@ -162,6 +162,7 @@ public class InventoryController implements Initializable {
 
                 boolean isUpdated = inventoryModel.updateInventory(inventoryDto);
                 if (isUpdated) {
+                    System.out.println("Check");
                     refreshPage();
                     LocalDate currentDate = LocalDate.now();
                     DisposalDto disposalDto=new DisposalDto();
@@ -193,6 +194,7 @@ public class InventoryController implements Initializable {
 
             }
         } catch (NumberFormatException e) {
+            e.printStackTrace();
             System.out.println("Please enter a valid number for deploy waste amount.");
             new Alert(Alert.AlertType.ERROR, "Please enter a valid number for deploy waste amount.!", ButtonType.OK).show();
 

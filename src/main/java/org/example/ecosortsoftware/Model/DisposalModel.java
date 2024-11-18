@@ -12,7 +12,7 @@ public class DisposalModel {
 
         if (resultSet.next()) {
             String lastColId = resultSet.getString(1);
-            String subString = lastColId.substring(1);
+            String subString = lastColId.substring(2);
             int i = Integer.parseInt(subString);
             int newIndex = i + 1;
 
