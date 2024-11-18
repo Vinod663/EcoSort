@@ -8,22 +8,26 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.DB.DBConnection;
 import org.example.ecosortsoftware.DTO.*;
 import org.example.ecosortsoftware.DTO.Tm.EmployeeTm;
 import org.example.ecosortsoftware.DTO.Tm.WasteCollectionTm;
 import org.example.ecosortsoftware.Model.*;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class WasteCollectionController implements Initializable {
 
     public Label divisionNameLab;
+    public Button wasteReport;
     @FXML
     private DatePicker CollectionDate;
 
@@ -553,4 +557,42 @@ public class WasteCollectionController implements Initializable {
     }
 
 
+    public void wasteReportAction(ActionEvent actionEvent) {
+        if(muniId==null){
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+        try{
+            JasperReport jasperReport = JasperCompileManager.compileReport(
+                    getClass()
+                            .getResourceAsStream("/Report/WasteCollectionReport.jrxml")
+            );
+            Connection connection= DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("P_Date", LocalDate.now().toString());
+            parameters.put("P_Municipal_Id",muniId);
+            LocalTime now = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            String time = now.format(formatter);
+            parameters.put("P_Time", time);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(////////
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        }
+        catch(JRException e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Fail to Generate Report!..", ButtonType.OK).show();
+        }
+        catch(SQLException e){
+            new Alert(Alert.AlertType.ERROR, "Fail to Connect database", ButtonType.OK).show();
+        }
+        catch(ClassNotFoundException e){
+            new Alert(Alert.AlertType.ERROR, "Class not founf", ButtonType.OK).show();
+        }
+    }
 }

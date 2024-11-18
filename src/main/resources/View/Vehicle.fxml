@@ -81,10 +81,18 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="760.0">
                <children>
+                  <Button fx:id="vehicleReportBtn" mnemonicParsing="false" onAction="#VehicleReportAction" prefHeight="41.0" prefWidth="134.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Vehicle Report" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="ResetBtn" mnemonicParsing="false" onAction="#ResetBtnAction" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #FC5C65;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Reset" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Button>
                   <Button fx:id="DeleteBtn" mnemonicParsing="false" onAction="#DeleteBtnAction" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #c0392b;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Delete" textFill="WHITE">
                      <font>

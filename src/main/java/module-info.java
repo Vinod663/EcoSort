@@ -4,6 +4,7 @@ module org.example.ecosortsoftware {
     requires lombok;
     requires java.sql;
     requires java.base;
+    requires net.sf.jasperreports.core;
 
 
 

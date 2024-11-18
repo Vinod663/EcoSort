@@ -1,0 +1,168 @@
+<!-- Created with Jaspersoft Studio version 7.0.0.final using JasperReports Library version 7.0.0-b478feaa9aab4375eba71de77b4ca138ad2f62aa  -->
+<jasperReport name="CollectionSheduleReport" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bbe5890-0237-420b-9a31-894e34427d08">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ECOSORTDBConnection"/>
+	<parameter name="P_Date" class="java.lang.String"/>
+	<parameter name="P_Time" class="java.lang.String"/>
+	<parameter name="P_Municipal_Id" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[select s.division_id,
+       s.depot,
+       s.degradable_waste,
+       s.recyclable_waste,
+       s.non_recyclable_waste,
+       s.municipal_id,
+       m.name
+        from waste_collection_shedule s
+        join municipal m on m.municipal_id=s.municipal_id
+    where s.municipal_id=$P{P_Municipal_Id}]]></query>
+	<field name="division_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="division_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="division_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="waste_collection_shedule"/>
+	</field>
+	<field name="depot" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="depot"/>
+		<property name="com.jaspersoft.studio.field.label" value="depot"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="waste_collection_shedule"/>
+	</field>
+	<field name="degradable_waste" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="degradable_waste"/>
+		<property name="com.jaspersoft.studio.field.label" value="degradable_waste"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="waste_collection_shedule"/>
+	</field>
+	<field name="recyclable_waste" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="recyclable_waste"/>
+		<property name="com.jaspersoft.studio.field.label" value="recyclable_waste"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="waste_collection_shedule"/>
+	</field>
+	<field name="non_recyclable_waste" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="non_recyclable_waste"/>
+		<property name="com.jaspersoft.studio.field.label" value="non_recyclable_waste"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="waste_collection_shedule"/>
+	</field>
+	<field name="municipal_id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="municipal_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="municipal_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="waste_collection_shedule"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="name"/>
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="municipal"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="58" splitType="Stretch">
+		<element kind="staticText" uuid="3386f73f-f0bd-4bad-9f93-3b02b634900c" x="150" y="0" width="254" height="39" fontSize="18.0" underline="true" bold="true" hTextAlign="Center">
+			<text><![CDATA[Waste Collection Shedule]]></text>
+		</element>
+	</title>
+	<pageHeader height="66" splitType="Stretch">
+		<element kind="staticText" uuid="5cdeecf7-d5e7-465e-b3d2-d8dc870cb6f8" x="0" y="0" width="120" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Municipal Id:]]></text>
+		</element>
+		<element kind="staticText" uuid="ddb7a054-2772-4c5e-aa0b-df8738e195b4" x="0" y="30" width="120" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<text><![CDATA[Municipal Name:]]></text>
+		</element>
+		<element kind="textField" uuid="b2250e16-8cf7-4669-8373-b8c76e7783fa" x="120" y="0" width="278" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{municipal_id}]]></expression>
+		</element>
+		<element kind="textField" uuid="b5a0c741-63e8-4b57-b48d-89c5b6808355" x="120" y="30" width="278" height="30" fontSize="14.0" bold="true" vTextAlign="Middle">
+			<expression><![CDATA[$F{name}]]></expression>
+		</element>
+		<element kind="textField" uuid="0c31847d-ceed-4a9f-a860-01a9e249bc45" x="404" y="0" width="146" height="30" fontSize="14.0" hTextAlign="Right" vTextAlign="Middle">
+			<expression><![CDATA[$P{P_Date}]]></expression>
+		</element>
+		<element kind="textField" uuid="735ae91f-b279-4e1a-b93a-1ab459558917" x="404" y="30" width="146" height="30" fontSize="12.0" hTextAlign="Right">
+			<expression><![CDATA[$P{P_Time}]]></expression>
+		</element>
+	</pageHeader>
+	<columnHeader height="49" splitType="Stretch">
+		<element kind="staticText" uuid="557260f1-5760-45e7-9d7d-3ca4e8926ee1" x="0" y="0" width="141" height="49" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Depot]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="843d5c64-7cfd-4913-a3bd-1d71614a3c80"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="d16cb49c-b2ed-440b-a5d2-3082582a0493" x="141" y="0" width="138" height="49" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Degradable Waste]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ff0ff889-5b95-4654-ae4f-74f3fca5e443"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="2337209f-9ab0-40c7-895f-0c5d28b73ccc" x="279" y="0" width="138" height="49" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Recyclable Waste]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e483c5fc-31ce-4f2c-b0bd-b964cb1eaf95"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="4f6ac812-841e-411e-bd80-16e4118cb2ff" x="417" y="0" width="138" height="49" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Non Recyclable Waste]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fc71509-9555-4d66-a45b-2dc5d7213c13"/>
+			<box>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<element kind="textField" uuid="c3a97966-e547-41ec-b434-21e6402186ee" x="0" y="0" width="141" height="40" fontSize="12.0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{depot}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="843d5c64-7cfd-4913-a3bd-1d71614a3c80"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="2e9464c7-1bbf-49f6-82b7-010623b6de81" x="141" y="0" width="138" height="40" fontSize="12.0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{degradable_waste}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ff0ff889-5b95-4654-ae4f-74f3fca5e443"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="5ac6b638-716c-47ae-b181-8b9014c448ba" x="279" y="0" width="138" height="40" fontSize="12.0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{recyclable_waste}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e483c5fc-31ce-4f2c-b0bd-b964cb1eaf95"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+			<element kind="textField" uuid="cae341a4-5c29-4936-9afb-4b18a4d0daff" x="417" y="0" width="138" height="40" fontSize="12.0" hTextAlign="Center" vTextAlign="Middle">
+				<expression><![CDATA[$F{non_recyclable_waste}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fc71509-9555-4d66-a45b-2dc5d7213c13"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="19" splitType="Stretch"/>
+	<pageFooter height="7" splitType="Stretch"/>
+	<summary height="10" splitType="Stretch"/>
+</jasperReport>
