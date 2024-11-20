@@ -9,13 +9,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.WasteCollectionController">
+<AnchorPane fx:id="Anchor" prefHeight="464.0" prefWidth="800.0" stylesheets="@../CSS%20Styles/Employee.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.WasteCollectionController">
    <children>
       <AnchorPane prefHeight="464.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -136,12 +137,34 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="779.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="779.0">
                      <children>
-                        <Button fx:id="wasteReport" mnemonicParsing="false" onAction="#wasteReportAction" prefHeight="41.0" prefWidth="134.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Waste Report" textFill="WHITE">
+                        <Button fx:id="statsBtn" mnemonicParsing="false" onAction="#StatsAction" prefHeight="42.0" prefWidth="118.0" style="-fx-background-color: #273c75;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Statistics" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="21.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-statistics-30.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="wasteReport" mnemonicParsing="false" onAction="#wasteReportAction" prefHeight="43.0" prefWidth="152.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Waste Report" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="21.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-remove-58.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button fx:id="ResetBtn" mnemonicParsing="false" onAction="#ResetBtnAction" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #FC5C65;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Reset" textFill="WHITE">
                            <font>
@@ -150,6 +173,13 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="21.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-reset-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button fx:id="DeleteBtn" mnemonicParsing="false" onAction="#DeleteBtnAction" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #c0392b;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Delete" textFill="WHITE">
                            <font>
@@ -158,6 +188,13 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="21.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-delete-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button fx:id="UpdateBtn" mnemonicParsing="false" onAction="#UpdateBtnAction" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #3498db;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Update" textFill="WHITE">
                            <font>
@@ -166,14 +203,28 @@
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="21.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-update-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                         <Button fx:id="SaveBtn" mnemonicParsing="false" onAction="#SaveBtnAction" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #2ecc71;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Save" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="10.0" right="20.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="21.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-save-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                   </HBox>

@@ -1,0 +1,60 @@
+.invisibleBox{
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-text-fill: white; /* Replace with your desired color */
+    -fx-font-size: 18px;   /* Optional: Adjust font size */
+    -fx-font-weight: bold; /* Optional: Make it bold */
+}
+
+.topBar{
+    -fx-background-radius: 25 25 0 0;
+    -fx-background-color: #0b3048;
+}
+
+.background{
+    -fx-background-color: #05263b;
+    -fx-background-radius: 25;
+}
+
+
+
+.chart{
+    -fx-background-color: #05263b;
+    /*-fx-font-size: 20;*/
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    /*-fx-legend-visible: false;*/
+}
+
+.axis .axis-label {
+    -fx-text-fill: white; /* For axis labels */
+}
+
+.axis .tick-mark .label {
+    -fx-text-fill: white; /* For tick mark labels */
+}
+
+.axis {
+    -fx-tick-label-fill: white; /* Another way to set text color */
+    -fx-axis-line-color: white; /* Change axis line color */
+    -fx-tick-mark-fill: white;  /* Change tick mark color */
+}
+
+.chart-plot-background {
+    -fx-background-color:transparent;
+}
+
+.default-color0.chart-series-line { -fx-stroke: #09FF00; }
+.default-color0.chart-line-symbol {
+    -fx-background-color:  #09FF00, white; /* Blue legend circle */
+}
+.default-color1.chart-series-line { -fx-stroke: #FF8000; }
+.default-color1.chart-line-symbol {
+    -fx-background-color:  #FF8000, white; /* Blue legend circle */
+}
+.default-color2.chart-series-line { -fx-stroke: #ed4d51; }
+.default-color2.chart-line-symbol {
+    -fx-background-color:  #ed4d51, white; /* Blue legend circle */
+}

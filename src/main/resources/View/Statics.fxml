@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="Home" prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.StaticsController">
+   <children>
+      <AnchorPane prefHeight="464.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="464.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #41B3A2;" stylesheets="@../CSS%20Styles/Statics.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+               <children>
+                  <LineChart fx:id="chart" maxHeight="1.7976931348623157E308" prefHeight="410.0" prefWidth="760.0" style="-fx-background-radius: 10;" title="Waste Statistics" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                      <CategoryAxis label="Date" side="BOTTOM" fx:id="x" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="y" label="Waste Amount (T)" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="52.0" prefWidth="760.0">
+                     <children>
+                        <Button fx:id="logWasteBtn" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#LogWasteAction" prefHeight="42.0" prefWidth="188.0" style="-fx-background-color: #192a56;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Waste Entry " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-landfill-50.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="recycleReportBtn" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#recycleReportAction" prefHeight="42.0" prefWidth="188.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Recycling Report" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0">
+                                 <image>
+                                    <Image url="@../../../../../../../../../../DOWNLOADS/icons8-recycle-bin-32.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

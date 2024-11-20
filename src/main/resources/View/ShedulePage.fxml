@@ -7,12 +7,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.SheduleController">
+<AnchorPane prefHeight="464.0" prefWidth="800.0" stylesheets="@../CSS%20Styles/Shedule.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.SheduleController">
    <children>
       <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -272,18 +274,32 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="760.0">
                <children>
-                  <Button fx:id="SheduleReportBtn" mnemonicParsing="false" onAction="#SheduleReportAction" prefHeight="41.0" prefWidth="134.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Shedule Report" textFill="WHITE">
+                  <Button fx:id="SheduleReportBtn" mnemonicParsing="false" onAction="#SheduleReportAction" prefHeight="42.0" prefWidth="165.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Shedule Report" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="21.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../DOWNLOADS/icons8-statistics-report-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                   <Button fx:id="SaveBtn" mnemonicParsing="false" onAction="#SaveBtnAction" prefHeight="31.0" prefWidth="124.0" style="-fx-background-color: #15B392;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Save" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="21.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../DOWNLOADS/icons8-save-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>

@@ -1,0 +1,106 @@
+/* General Styles */
+.root {
+    -fx-background-color: #f4f6f7; /* Light gray background */
+    -fx-font-family: 'Arial, sans-serif';
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #2c3e50; /* Dark blue text */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Buttons */
+.button {
+    -fx-background-radius: 20; /* Rounded buttons */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-cursor: hand;
+    -fx-text-fill: white; /* Text color for buttons */
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-scale-x: 1.1; /* Slight zoom on hover */
+    -fx-scale-y: 1.1;
+}
+
+/* Specific Button Styles */
+#employeereportBtn {
+    -fx-background-color: #535c68; /* Gray button */
+}
+
+#ResetBtn {
+    -fx-background-color: #fc5c65; /* Red button */
+}
+
+#deleteBtn {
+    -fx-background-color: #c0392b; /* Dark red button */
+}
+
+#updateBtn {
+    -fx-background-color: #3498db; /* Blue button */
+}
+
+#saveBtn {
+    -fx-background-color: #2ecc71; /* Green button */
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-radius: 10; /* Rounded corners */
+    -fx-padding: 5 10 5 10;
+    -fx-border-color: #bdc3c7; /* Light border */
+    -fx-border-radius: 10;
+    -fx-font-size: 14px;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #22C55E; /* Green background for ComboBox */
+    -fx-border-radius: 10;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 14px;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #ecf0f1; /* Light background */
+    -fx-border-color: #dcdde1; /* Border for the table */
+    -fx-border-width: 2px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #34495e; /* Dark blue header */
+    -fx-text-fill: white; /* White text for header */
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f8f9fa; /* Light gray for odd rows */
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff; /* White for even rows */
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #2c3e50; /* Dark blue text for cells */
+    -fx-font-size: 14px;
+}
+
+/* HBox and VBox */
+.hbox {
+    -fx-spacing: 10; /* Spacing between children */
+}
+
+.vbox {
+    -fx-spacing: 15; /* Spacing between children */
+    -fx-padding: 10 20 10 20; /* Padding inside VBox */
+}
+
+/* AnchorPane */
+.anchor-pane-background {
+    -fx-background-color: #ffffff; /* White background for AnchorPane */
+}

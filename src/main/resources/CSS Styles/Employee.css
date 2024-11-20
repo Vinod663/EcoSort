@@ -1,0 +1,85 @@
+/* General Styles */
+.root {
+    -fx-background-color: #f4f6f7; /* Light gray background */
+    -fx-font-family: 'Arial, sans-serif';
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #2c3e50; /* Dark blue text */
+}
+
+/* Buttons */
+.button {
+    -fx-background-radius: 20; /* Rounded buttons */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-scale-x: 1.1; /* Slight zoom on hover */
+    -fx-scale-y: 1.1;
+}
+
+#employeereportBtn {
+    -fx-background-color: #535c68;
+}
+
+#ResetBtn {
+    -fx-background-color: #fc5c65;
+}
+
+#deleteBtn {
+    -fx-background-color: #c0392b;
+}
+
+#updateBtn {
+    -fx-background-color: #3498db;
+}
+
+#saveBtn {
+    -fx-background-color: #2ecc71;
+}
+
+/* TextFields */
+.text-field {
+    -fx-background-radius: 10; /* Rounded corners */
+    -fx-padding: 5 10 5 10;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 10;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: #ecf0f1; /* Light background */
+    -fx-border-color: #dcdde1;
+    -fx-border-width: 2px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #2c3e50;
+}
+
+/* HBox and VBox */
+.hbox {
+    -fx-spacing: 10;
+}
+
+.vbox {
+    -fx-spacing: 15;
+}

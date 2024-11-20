@@ -4,20 +4,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.DB.DBConnection;
 import org.example.ecosortsoftware.DTO.DisposalDto;
 import org.example.ecosortsoftware.DTO.InventoryDto;
 import org.example.ecosortsoftware.Model.DisposalModel;
 import org.example.ecosortsoftware.Model.InventoryModel;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class InventoryController implements Initializable {
 
     public TextField deployWasteText;
     public Button deployBtn;
+    public Button disposalReportBtn;
     @FXML
     private Label currentWasteCapacityLab;
 
@@ -202,6 +211,45 @@ public class InventoryController implements Initializable {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void DisposalReportAction(ActionEvent actionEvent) {
+        if(municipalController.getMunicipalId()==null){
+            new Alert(Alert.AlertType.ERROR, "Select Municipal First!", ButtonType.OK).show();
+            return;
+        }
+        try{
+            JasperReport jasperReport = JasperCompileManager.compileReport(
+                    getClass()
+                            .getResourceAsStream("/Report/DisposalReport.jrxml")
+            );
+            Connection connection= DBConnection.getInstance().getConnection();
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("P_Date", LocalDate.now().toString());
+            parameters.put("P_Municipal_Id",municipalController.getMunicipalId());
+            LocalTime now = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            String time = now.format(formatter);
+            parameters.put("P_Time", time);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(////////
+                    jasperReport,
+                    parameters,
+                    connection
+            );
+            JasperViewer.viewReport(jasperPrint, false);
+
+        }
+        catch(JRException e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Fail to Generate Report!..", ButtonType.OK).show();
+        }
+        catch(SQLException e){
+            new Alert(Alert.AlertType.ERROR, "Fail to Connect database", ButtonType.OK).show();
+        }
+        catch(ClassNotFoundException e){
+            new Alert(Alert.AlertType.ERROR, "Class not founf", ButtonType.OK).show();
         }
     }
 }

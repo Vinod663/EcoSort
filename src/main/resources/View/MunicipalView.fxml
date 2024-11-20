@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,7 +17,7 @@
 
 <AnchorPane fx:id="HomeAnchor" prefHeight="464.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.MunicipalController">
    <children>
-      <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #ffffff;" stylesheets="@../CSS%20Styles/Home.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
@@ -71,26 +73,47 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="42.0" prefWidth="779.0">
                <children>
-                  <Button fx:id="SheduleBtn" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#SheduleBtnAction" prefHeight="10.0" style="-fx-background-color: #15B392;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Shedule Collection" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="SheduleBtn" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#SheduleBtnAction" prefHeight="10.0" style="-fx-background-color: #15B392;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Shedule Collection" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../DOWNLOADS/icons8-scenario-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="LogWasteBtn" alignment="CENTER" layoutX="320.0" layoutY="16.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#LogWasteBtnAction" prefHeight="10.0" style="-fx-background-color: #16423C;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Log the Waste" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="LogWasteBtn" alignment="CENTER" layoutX="320.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#LogWasteBtnAction" prefHeight="10.0" style="-fx-background-color: #16423C;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Waste Entry" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../DOWNLOADS/icons8-landfill-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="TrackInventoryBtn" alignment="CENTER" layoutX="416.0" layoutY="16.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#TrackInventoryBtnAction" prefHeight="10.0" style="-fx-background-color: #347928;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Track Inventory" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button fx:id="TrackInventoryBtn" alignment="CENTER" layoutX="416.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#TrackInventoryBtnAction" prefHeight="10.0" style="-fx-background-color: #347928;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Track Inventory" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../DOWNLOADS/icons8-waste-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>

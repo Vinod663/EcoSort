@@ -1,0 +1,93 @@
+/* Root Background */
+.root {
+    -fx-background-color: #f5f5f5; /* Neutral light background for modern look */
+}
+
+/* VBox Background */
+.vbox {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #f0f9f0); /* Subtle gradient background */
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-border-color: #22C55E; /* Green border */
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #333333; /* Darker text for readability */
+    -fx-font-weight: bold;
+}
+
+/* Text */
+.text {
+    -fx-text-fill: #555555; /* Neutral tone for body text */
+}
+
+/* HBox Buttons Section */
+.hbox {
+    -fx-spacing: 15px; /* Add space between child elements */
+    -fx-padding: 10px;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-color: linear-gradient(to bottom, #22C55E, #16A34A); /* Gradient for buttons */
+    -fx-text-fill: white; /* White text */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px 20px; /* Comfortable padding */
+    -fx-font-weight: bold;
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 4, 0.5, 0, 1); /* Subtle shadow for depth */
+}
+
+.button:hover {
+    -fx-background-color: #1E9E48; /* Slightly darker green on hover */
+}
+
+.button:pressed {
+    -fx-background-color: #128736; /* Even darker on press */
+}
+
+/* Specific Button Styling */
+#SheduleBtn {
+    -fx-background-color: #15B392; /* Cyan-green for specific button */
+}
+
+#LogWasteBtn {
+    -fx-background-color: #16423C; /* Deep green for contrast */
+}
+
+#TrackInventoryBtn {
+    -fx-background-color: #347928; /* Darker forest green */
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: white; /* White table background */
+    -fx-border-color: #22C55E; /* Green border for the table */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-table-cell-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #22C55E; /* Header with green background */
+}
+
+.table-view .column-header,
+.table-view .column-header .label {
+    -fx-text-fill: white; /* White header text */
+    -fx-font-weight: bold;
+}
+
+/* Text Section with Card */
+.hbox > .hbox {
+    -fx-background-color: linear-gradient(to right, #22C55E, #16A34A);
+    -fx-background-radius: 10px;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}

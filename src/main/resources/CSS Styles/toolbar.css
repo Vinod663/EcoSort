@@ -1,0 +1,53 @@
+/* Root Background */
+.root {
+    -fx-background-color: #f9f9f9; /* Neutral background for clean appearance */
+}
+
+/* Gradient Background for Toolbars */
+.vbox {
+    -fx-background-color: linear-gradient(to right, #22C55E, #16A34A);
+    -fx-padding: 0;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: transparent; /* Buttons blend with the gradient background */
+    -fx-border-color: white; /* White border for contrast */
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 15px;
+    /*-fx-text-fill: white;*/
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 3, 0.3, 0, 1); /* Subtle shadow */
+}
+
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Slight highlight on hover */
+}
+
+.button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on press */
+}
+
+/* Logout Button*/
+/*.button[fx\\:id="LogOutBtn"] {*/
+/*    -fx-background-color: white;*/
+/*    -fx-border-color: #22C55E;*/
+/*    -fx-text-fill: #22C55E;*/
+/*}*/
+
+/*.button[fx\\:id="LogOutBtn"]:hover {*/
+/*                                -fx-background-color: #22C55E;*/
+/*                                -fx-text-fill: white;*/
+/*                            }*/
+
+/* Labels */
+.label {
+    -fx-text-fill: black; /* Keeps label text consistent and readable */
+}
+
+/* HBox Alignment Adjustments */
+.hbox {
+    -fx-spacing: 10px; /* Adds spacing between buttons */
+    -fx-padding: 10px; /* Adds padding for alignment */
+}

@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.ecosortsoftware.DB.DBConnection;
@@ -16,6 +18,7 @@ import org.example.ecosortsoftware.DTO.Tm.EmployeeTm;
 import org.example.ecosortsoftware.DTO.Tm.WasteCollectionTm;
 import org.example.ecosortsoftware.Model.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,6 +31,8 @@ public class WasteCollectionController implements Initializable {
 
     public Label divisionNameLab;
     public Button wasteReport;
+    public Button statsBtn;
+    public AnchorPane Anchor;
     @FXML
     private DatePicker CollectionDate;
 
@@ -593,6 +598,21 @@ public class WasteCollectionController implements Initializable {
         }
         catch(ClassNotFoundException e){
             new Alert(Alert.AlertType.ERROR, "Class not founf", ButtonType.OK).show();
+        }
+    }
+
+    public void StatsAction(ActionEvent actionEvent) {
+        try {
+            Anchor.getChildren().clear();
+            AnchorPane load = FXMLLoader.load(getClass().getResource("/View/Statics.fxml"));
+
+            load.prefWidthProperty().bind(Anchor.widthProperty());
+            load.prefHeightProperty().bind(Anchor.heightProperty());
+
+            Anchor.getChildren().add(load);
+        } catch (IOException e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Fail to load page!").show();
         }
     }
 }
