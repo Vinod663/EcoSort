@@ -5,6 +5,7 @@ module org.example.ecosortsoftware {
     requires java.sql;
     requires java.base;
     requires net.sf.jasperreports.core;
+    requires java.mail;
 
 
 

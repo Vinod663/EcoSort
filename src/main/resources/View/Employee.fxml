@@ -84,17 +84,29 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="760.0">
                <children>
-                  <Button fx:id="employeereportBtn" mnemonicParsing="false" onAction="#EmployeeReportAction" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Employee Report" textFill="WHITE">
+                  <Button fx:id="employeereportBtn" mnemonicParsing="false" onAction="#EmployeeReportAction" prefHeight="42.0" prefWidth="178.0" style="-fx-background-color: #535c68;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Employee Report" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets right="10.0" />
                      </HBox.margin>
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="21.0">
                            <image>
                               <Image url="@../../../../../../../../../../DOWNLOADS/icons8-statistics-report-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="sendMailBtn" mnemonicParsing="false" onAction="#SendMailAction" prefHeight="42.0" prefWidth="128.0" style="-fx-background-color: #789DBC;" stylesheets="@../CSS%20Styles/BTN3D.css" text="Send Mail" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="21.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../DOWNLOADS/icons8-mail-50%20(1).png" />
                            </image>
                         </ImageView>
                      </graphic>
