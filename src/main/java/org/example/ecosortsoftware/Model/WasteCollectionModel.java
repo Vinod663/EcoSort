@@ -32,7 +32,7 @@ public class WasteCollectionModel {
     }
 
     public static ArrayList<WasteCollectionDto> GetData(String munId) throws SQLException, ClassNotFoundException {
-        ResultSet result = CrudUtill.execute("select DATE_FORMAT(collection_date, '%d-%b') AS date,recyclable_waste_amount,degradable_waste_amount,nonRecyclable_waste_amount from waste_collection where municilId=? order by collection_date", munId);
+        ResultSet result = CrudUtill.execute("select DATE_FORMAT(collection_date, '%d-%b') AS date, collection_id, recyclable_waste_amount,degradable_waste_amount,nonRecyclable_waste_amount from waste_collection where municilId=? order by collection_date", munId);
         ArrayList<WasteCollectionDto> collectionDto = new ArrayList<>();
         while (result.next()) {
             WasteCollectionDto dto = new WasteCollectionDto();
@@ -42,6 +42,7 @@ public class WasteCollectionModel {
             dto.setRecyclableWasteAmount(result.getDouble("recyclable_waste_amount"));
             dto.setDegradableWasteAmount(result.getDouble("degradable_waste_amount"));
             dto.setNonRecyclableWasteAmount(result.getDouble("nonRecyclable_waste_amount"));
+            dto.setCollectionId(result.getString("collection_id"));////////////////////
             collectionDto.add(dto);
         }
         return collectionDto;

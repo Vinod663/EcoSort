@@ -116,9 +116,12 @@ public class StaticsController implements Initializable {
 
         // Add data points to the series
         for (WasteCollectionDto dto : stats) {
-            recycling.getData().add(new XYChart.Data<>(dto.getCollectionDate(), dto.getRecyclableWasteAmount()));
-            degrade.getData().add(new XYChart.Data<>(dto.getCollectionDate(), dto.getDegradableWasteAmount()));
-            NonRecy.getData().add(new XYChart.Data<>(dto.getCollectionDate(), dto.getNonRecyclableWasteAmount()));
+//            recycling.getData().add(new XYChart.Data<>(dto.getCollectionDate(), dto.getRecyclableWasteAmount()));
+//            degrade.getData().add(new XYChart.Data<>(dto.getCollectionDate(), dto.getDegradableWasteAmount()));
+//            NonRecy.getData().add(new XYChart.Data<>(dto.getCollectionDate(), dto.getNonRecyclableWasteAmount()));
+            recycling.getData().add(new XYChart.Data<>(dto.getCollectionId()+" ("+dto.getCollectionDate()+")", dto.getRecyclableWasteAmount()));
+            degrade.getData().add(new XYChart.Data<>(dto.getCollectionId()+" ("+dto.getCollectionDate()+")", dto.getDegradableWasteAmount()));
+            NonRecy.getData().add(new XYChart.Data<>(dto.getCollectionId()+" ("+dto.getCollectionDate()+")", dto.getNonRecyclableWasteAmount()));
         }
 
         // Add the series to the chart

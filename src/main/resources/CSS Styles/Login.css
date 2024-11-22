@@ -1,0 +1,78 @@
+/* Set a smooth gradient background for the entire page */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #ffffff, #e7f9f4);
+    -fx-font-family: "Arial", sans-serif;
+}
+
+/* Image styling */
+.ImageView {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 5);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* Label styling */
+.Label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+/* Special styling for EcoSort title */
+.Label:contains("EcoSort") {
+    -fx-font-size: 30px;
+    -fx-text-fill: #22c55e;
+    -fx-font-weight: bold;
+}
+
+/* TextField and PasswordField styling */
+.TextField, .PasswordField {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #d4d4d4;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10 15;
+    -fx-font-size: 14px;
+}
+
+.TextField:focused, .PasswordField:focused {
+    -fx-border-color: #22c55e;
+    -fx-box-shadow: 0 0 5px #22c55e;
+}
+
+/* Button styling */
+.Button {
+    -fx-background-color: #22c55e;
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 15;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 5, 0.5, 0, 5);
+    -fx-border-radius: 8px;
+}
+
+.Button:hover {
+    -fx-background-color: #20b853;
+}
+
+.Button:pressed {
+    -fx-background-color: #1da74d;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.5, 0, 3);
+}
+
+/* Adjusting VBox and HBox spacing and padding for better layout */
+.VBox {
+    -fx-spacing: 20px;
+}
+
+.HBox {
+    -fx-spacing: 15px;
+}
+
+/* Add hover effect to the image */
+.ImageView:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.7, 0, 5);
+}
