@@ -34,7 +34,7 @@
                      <children>
                         <ImageView fitHeight="43.0" fitWidth="50.0">
                            <image>
-                              <Image url="@../Images/transparent-recycling-environmental-conservation-reusable-bags-garbage-bin-with-reusable-bag-promotes-recycling65537683c136a9.39827135169996864379145.png" />
+                              <Image url="@../Images/transparent-recycling-environmental-conservation.png" />
                            </image>
                         </ImageView>
                         <Label text="EcoSort" textFill="#22c55e">

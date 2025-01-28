@@ -375,7 +375,7 @@ public class EmployeeController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(load));
             stage.setTitle("Send Email");
-            Image image = new Image(getClass().getResourceAsStream("/Images/transparent-recycling-environmental-conservation-reusable-bags-garbage-bin-with-reusable-bag-promotes-recycling65537683c136a9.3982713516999686437914.png"));
+            Image image = new Image(getClass().getResourceAsStream("/Images/transparent-recycling-environmental.png"));
             stage.getIcons().add(image);
 
             // Set window as modal
