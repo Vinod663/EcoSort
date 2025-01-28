@@ -47,7 +47,7 @@ public class SendMailController {
             return; // Stop further execution if the email is empty
         }
 
-        final String FROM = "EmailAddress";//need to hide before commit
+        final String FROM = "vinodfernando158@gmail.com";//need to hide before commit
         String subject = subjectText.getText();
         String body = messageText.getText();
 
@@ -79,7 +79,7 @@ public class SendMailController {
             protected PasswordAuthentication getPasswordAuthentication() {
 
                 // Authenticate using the sender's email and app password
-                return new PasswordAuthentication(from, "API Key");// app password
+                return new PasswordAuthentication(from, "ygiw vcmt susu whbn");// app password
             }
         });
 
