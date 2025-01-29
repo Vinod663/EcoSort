@@ -8,9 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.ComplaintBO;
+import org.example.ecosortsoftware.bo.EmployeeBO;
 import org.example.ecosortsoftware.dto.ComplaintsDto;
-import org.example.ecosortsoftware.dto.Tm.ComplaintsTm;
-import org.example.ecosortsoftware.Model.ComplaintModel;
+import org.example.ecosortsoftware.entity.Complaints;
+import org.example.ecosortsoftware.view.tdm.ComplaintsTm;
+
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -19,7 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ComplaintController implements Initializable {
-
+    ComplaintBO complaintBO= (ComplaintBO) BOFactory.getInstance().getBO(BOFactory.BOType.COMPLAINT);
     @FXML
     private Button ResetBtn;
 
@@ -65,7 +69,7 @@ public class ComplaintController implements Initializable {
             Optional<ButtonType> buttonType = alert.showAndWait();
 
             if(buttonType.isPresent()&&buttonType.get()==ButtonType.YES){
-                boolean result=complaintModel.DeleteComplaint(id);
+                boolean result=complaintBO.delete(id);
 
                 if(result){
                     refershPage();
@@ -127,7 +131,7 @@ public class ComplaintController implements Initializable {
         complaintsDto.setDescription(descriptionTextArea.getText());
         complaintsDto.setMunicipalId(munId);
 
-        boolean isSaved = complaintModel.saveComplaint(complaintsDto);
+        boolean isSaved = complaintBO.save(complaintsDto);
         if (isSaved) {
             refershPage();
             new Alert(Alert.AlertType.INFORMATION, "Complaint Saved", ButtonType.OK).show();
@@ -141,6 +145,7 @@ public class ComplaintController implements Initializable {
 
     @FXML
     void updateBtnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+
         ComplaintsDto complaintsDto=new ComplaintsDto();
         complaintsDto.setComplaintId(complaintIdLab.getText());
         if(settledRadio.isSelected()){
@@ -151,7 +156,7 @@ public class ComplaintController implements Initializable {
         }
         complaintsDto.setDescription(descriptionTextArea.getText());
         complaintsDto.setMunicipalId(munId);
-        boolean isUpdated = complaintModel.updateComplaint(complaintsDto);
+        boolean isUpdated = complaintBO.update(complaintsDto);
         if (isUpdated) {
             refershPage();
             new Alert(Alert.AlertType.INFORMATION, "Complaint Updated", ButtonType.OK).show();
@@ -161,7 +166,7 @@ public class ComplaintController implements Initializable {
         }
     }
     String munId;
-    ComplaintModel complaintModel=new ComplaintModel();
+   // ComplaintModel complaintModel=new ComplaintModel();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -181,7 +186,7 @@ public class ComplaintController implements Initializable {
     }
 
     private void refershPage() throws SQLException, ClassNotFoundException {
-        complaintIdLab.setText(String.valueOf(complaintModel.getNextCpId()));
+        complaintIdLab.setText(String.valueOf(complaintBO.getNextId()));
         saveBtn.setDisable(false);
         updateBtn.setDisable(true);
         deleteBtn.setDisable(true);
@@ -194,10 +199,11 @@ public class ComplaintController implements Initializable {
     public void loadTable() throws SQLException, ClassNotFoundException {
         ObservableList<ComplaintsTm> complaintTms= FXCollections.observableArrayList();
 
-        ArrayList<ComplaintsTm> all = ComplaintModel.getAll(municipalController.getMunicipalId());
+        ArrayList<Complaints> all = complaintBO.getAllFromMunicipal(municipalController.getMunicipalId());
 
-        for(ComplaintsTm complaintTm:all){
-            complaintTms.add(complaintTm);
+        for(Complaints complaintTm:all){
+            complaintTms.add(new ComplaintsTm(complaintTm.getComplaintId(),complaintTm.getDescription(),
+                    complaintTm.getStatus(),complaintTm.getMunicipalId()));
         }
         complaintTable.setItems(complaintTms);
 
