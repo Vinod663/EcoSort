@@ -10,9 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.EmployeeBO;
+import org.example.ecosortsoftware.bo.MunicipalBO;
 import org.example.ecosortsoftware.dto.MunicipalDto;
-import org.example.ecosortsoftware.dto.Tm.MunicipalTm;
-import org.example.ecosortsoftware.Model.MunicipalModel;
+import org.example.ecosortsoftware.view.tdm.MunicipalTm;
 import org.example.ecosortsoftware.Model.SheduleModel;
 
 import java.io.IOException;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MunicipalController implements Initializable {
+
+    MunicipalBO municipalBO= (MunicipalBO) BOFactory.getInstance().getBO(BOFactory.BOType.MUNICIPAL);
 
     public TableColumn<MunicipalTm, String> MunIdCol;
     public TableColumn<MunicipalTm, String> MunNameCol;
@@ -98,7 +102,7 @@ public class MunicipalController implements Initializable {
 
         ObservableList<MunicipalTm> municipalTms= FXCollections.observableArrayList();
 
-        ArrayList<MunicipalDto> municipalDtos= MunicipalModel.getAll();
+        ArrayList<MunicipalDto> municipalDtos= municipalBO.getAll();
         for(MunicipalDto municipalDto : municipalDtos){
             MunicipalTm municipalTm= new MunicipalTm(
                     municipalDto.getMunicipalId(),

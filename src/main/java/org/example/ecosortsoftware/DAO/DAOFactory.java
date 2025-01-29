@@ -1,9 +1,6 @@
 package org.example.ecosortsoftware.DAO;
 
-import org.example.ecosortsoftware.DAO.custom.impl.ComplaintDAOimpl;
-import org.example.ecosortsoftware.DAO.custom.impl.EmployeeDAOimpl;
-import org.example.ecosortsoftware.DAO.custom.impl.LoginDAOimpl;
-import org.example.ecosortsoftware.DAO.custom.impl.VehicleDAOimpl;
+import org.example.ecosortsoftware.DAO.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -16,7 +13,7 @@ public class DAOFactory {
     }
 
     public enum DAOType{
-        LOGIN, EMPLOYEE,VEHICLE,COMPLAINT
+        LOGIN, EMPLOYEE,VEHICLE,COMPLAINT,MUNICIPAL
     }
 
     public SuperDAO getDAO(DAOType type) {
@@ -25,6 +22,7 @@ public class DAOFactory {
             case EMPLOYEE: return new EmployeeDAOimpl();
             case VEHICLE: return new VehicleDAOimpl();
             case COMPLAINT: return new ComplaintDAOimpl();
+            case MUNICIPAL: return new MunicipalDAOimpl();
             default: return null;
 
 
