@@ -1,9 +1,8 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.DTO.ComplaintsDto;
-import org.example.ecosortsoftware.DTO.Tm.ComplaintsTm;
-import org.example.ecosortsoftware.DTO.Tm.EmployeeTm;
-import org.example.ecosortsoftware.Utill.CrudUtill;
+import org.example.ecosortsoftware.dto.ComplaintsDto;
+import org.example.ecosortsoftware.dto.Tm.ComplaintsTm;
+import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 
 public class ComplaintModel {
     public static ArrayList<ComplaintsTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select * from complaint where municipalId=?", municipalId);
+        ResultSet resultSet = SQLUtil.execute("select * from complaint where municipalId=?", municipalId);
         ArrayList<ComplaintsTm> compTms = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -28,7 +27,7 @@ public class ComplaintModel {
     }
 
     public String getNextCpId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select complaint_id from complaint order by complaint_id desc limit 1;");
+        ResultSet resultSet = SQLUtil.execute("select complaint_id from complaint order by complaint_id desc limit 1;");
 
         if (resultSet.next()) {
             String lastColId = resultSet.getString(1);
@@ -42,16 +41,16 @@ public class ComplaintModel {
     }
 
     public boolean saveComplaint(ComplaintsDto complaintsDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("insert into complaint values(?,?,?,?)",
+        return SQLUtil.execute("insert into complaint values(?,?,?,?)",
                 complaintsDto.getComplaintId(),complaintsDto.getDescription(),complaintsDto.getStatus(),complaintsDto.getMunicipalId());
     }
 
     public boolean updateComplaint(ComplaintsDto complaintsDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("update complaint set description=?, status=?, municipalId=? where complaint_id=?",
+        return SQLUtil.execute("update complaint set description=?, status=?, municipalId=? where complaint_id=?",
                 complaintsDto.getDescription(),complaintsDto.getStatus(),complaintsDto.getMunicipalId(),complaintsDto.getComplaintId());
     }
 
     public boolean DeleteComplaint(String id) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("DELETE FROM complaint WHERE complaint_id=?",id);
+        return SQLUtil.execute("DELETE FROM complaint WHERE complaint_id=?",id);
     }
 }

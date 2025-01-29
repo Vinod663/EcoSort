@@ -1,9 +1,9 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.DTO.SheduleDto;
-import org.example.ecosortsoftware.DTO.Tm.SheduleTm;
-import org.example.ecosortsoftware.DTO.Tm.WardTm;
-import org.example.ecosortsoftware.Utill.CrudUtill;
+import org.example.ecosortsoftware.dto.SheduleDto;
+import org.example.ecosortsoftware.dto.Tm.SheduleTm;
+import org.example.ecosortsoftware.dto.Tm.WardTm;
+import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ public class SheduleModel {
     public boolean checkMunicipalData(String MunicipalId)  {
         System.out.println("Municipal ID:" + MunicipalId);
         try{
-            ResultSet result = CrudUtill.execute("SELECT * FROM Waste_Collection_Shedule WHERE municipal_id=?", MunicipalId);
+            ResultSet result = SQLUtil.execute("SELECT * FROM Waste_Collection_Shedule WHERE municipal_id=?", MunicipalId);
 
 
 
@@ -34,7 +34,7 @@ public class SheduleModel {
     }
 
     public ArrayList<SheduleTm> getAll(String MunicipalId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select * from waste_collection_shedule where municipal_id=?", MunicipalId);
+        ResultSet resultSet = SQLUtil.execute("select * from waste_collection_shedule where municipal_id=?", MunicipalId);
         ArrayList<SheduleTm> sheduleTms = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -54,7 +54,7 @@ public class SheduleModel {
     public boolean insertWards(ArrayList<WardTm> wardTms) throws SQLException, ClassNotFoundException {
 
         for (WardTm ward : wardTms) {
-            boolean result = CrudUtill.execute(
+            boolean result = SQLUtil.execute(
                     "INSERT INTO Waste_Collection_Shedule (municipal_id, division_id, depot, degradable_waste, recyclable_waste, non_recyclable_waste) VALUES (?, ?, ?, ?, ?, ?)",
                     ward.getMunicipalId(),
                     ward.getWardId(),
@@ -75,7 +75,7 @@ public class SheduleModel {
 
     public boolean updateShedule(SheduleDto sheduleDto) throws SQLException, ClassNotFoundException {
 
-       return CrudUtill.execute("UPDATE waste_collection_shedule SET municipal_id=?, depot=?, degradable_waste=?, recyclable_waste=?,non_recyclable_waste=? WHERE division_id=? "
+       return SQLUtil.execute("UPDATE waste_collection_shedule SET municipal_id=?, depot=?, degradable_waste=?, recyclable_waste=?,non_recyclable_waste=? WHERE division_id=? "
        ,sheduleDto.getMunicipalId()
        ,sheduleDto.getDepot()
        ,sheduleDto.getDegradableWaste()

@@ -1,10 +1,8 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.DTO.Tm.EmployeeTm;
-import org.example.ecosortsoftware.DTO.Tm.WasteCollectionTm;
-import org.example.ecosortsoftware.DTO.VehicleDto;
-import org.example.ecosortsoftware.DTO.WasteCollectionDto;
-import org.example.ecosortsoftware.Utill.CrudUtill;
+import org.example.ecosortsoftware.dto.Tm.WasteCollectionTm;
+import org.example.ecosortsoftware.dto.WasteCollectionDto;
+import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +10,7 @@ import java.util.ArrayList;
 
 public class WasteCollectionModel {
     public static ArrayList<String> getAllVehicleIds(String municipalId) throws SQLException, ClassNotFoundException {
-        ResultSet result = CrudUtill.execute("select * from vehicle where muni_id=?", municipalId);
+        ResultSet result = SQLUtil.execute("select * from vehicle where muni_id=?", municipalId);
         ArrayList<String> vehIds = new ArrayList<>();
 
         while (result.next()) {
@@ -22,7 +20,7 @@ public class WasteCollectionModel {
     }
 
     public static ArrayList<String> getAllDevisionIds(String municipalId) throws SQLException, ClassNotFoundException {
-        ResultSet result = CrudUtill.execute("select * from division where municipal_id=?", municipalId);
+        ResultSet result = SQLUtil.execute("select * from division where municipal_id=?", municipalId);
         ArrayList<String> devIds = new ArrayList<>();
 
         while (result.next()) {
@@ -32,7 +30,7 @@ public class WasteCollectionModel {
     }
 
     public static ArrayList<WasteCollectionDto> GetData(String munId) throws SQLException, ClassNotFoundException {
-        ResultSet result = CrudUtill.execute("select DATE_FORMAT(collection_date, '%d-%b') AS date, collection_id, recyclable_waste_amount,degradable_waste_amount,nonRecyclable_waste_amount from waste_collection where municilId=? order by collection_date", munId);
+        ResultSet result = SQLUtil.execute("select DATE_FORMAT(collection_date, '%d-%b') AS date, collection_id, recyclable_waste_amount,degradable_waste_amount,nonRecyclable_waste_amount from waste_collection where municilId=? order by collection_date", munId);
         ArrayList<WasteCollectionDto> collectionDto = new ArrayList<>();
         while (result.next()) {
             WasteCollectionDto dto = new WasteCollectionDto();
@@ -49,7 +47,7 @@ public class WasteCollectionModel {
     }
 
     public String getNextCollectionId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select collection_id from waste_collection order by collection_id desc limit 1;");
+        ResultSet resultSet = SQLUtil.execute("select collection_id from waste_collection order by collection_id desc limit 1;");
 
         if (resultSet.next()) {
             String lastColId = resultSet.getString(1);
@@ -63,7 +61,7 @@ public class WasteCollectionModel {
     }
 
     public ArrayList<WasteCollectionTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select * from waste_collection where municilId=?", municipalId);
+        ResultSet resultSet = SQLUtil.execute("select * from waste_collection where municilId=?", municipalId);
         ArrayList<WasteCollectionTm> collectionTms = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -88,21 +86,21 @@ public class WasteCollectionModel {
     }
 
     public double getTotalWaste(String muniId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select total_waste from waste_collection where municilId=? order by total_waste desc limit 1",muniId);
+        ResultSet resultSet = SQLUtil.execute("select total_waste from waste_collection where municilId=? order by total_waste desc limit 1",muniId);
         if (resultSet.next()) {
             return resultSet.getDouble("total_waste");
         }
         return 0;
     }
     public boolean saveCollection(WasteCollectionDto collectionDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("insert into waste_collection values(?,?,?,?,?,?,?,?,?,?,?)",
+        return SQLUtil.execute("insert into waste_collection values(?,?,?,?,?,?,?,?,?,?,?)",
                 collectionDto.getCollectionId(),collectionDto.getVehicleId(),collectionDto.getInventoryId(),collectionDto.getTotalWasteAmount(),collectionDto.getCollectionDate(),
                 collectionDto.getDivisionId(),collectionDto.getCollectedWasteAmount(),collectionDto.getDegradableWasteAmount(),collectionDto.getRecyclableWasteAmount(),
                 collectionDto.getNonRecyclableWasteAmount(),collectionDto.getMunicipalId());
     }
 
     public boolean updateCollection(WasteCollectionDto collectionDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("update waste_collection set municilId=?, vehicle_id=?, inventory_id=?, total_waste=?, collection_date=?, " +
+        return SQLUtil.execute("update waste_collection set municilId=?, vehicle_id=?, inventory_id=?, total_waste=?, collection_date=?, " +
                         "division_id=?, collected_waste_amount=?, degradable_waste_amount=?, recyclable_waste_amount=?, nonRecyclable_waste_amount=? where collection_id=?",
                 collectionDto.getMunicipalId(),collectionDto.getVehicleId(),collectionDto.getInventoryId(),collectionDto.getTotalWasteAmount(),collectionDto.getCollectionDate(),
                 collectionDto.getDivisionId(),collectionDto.getCollectedWasteAmount(),collectionDto.getDegradableWasteAmount(),collectionDto.getRecyclableWasteAmount(),
@@ -110,6 +108,6 @@ public class WasteCollectionModel {
     }
 
     public boolean DeleteCollection(String collectionId) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("DELETE FROM waste_collection WHERE collection_id=?",collectionId);
+        return SQLUtil.execute("DELETE FROM waste_collection WHERE collection_id=?",collectionId);
     }
 }

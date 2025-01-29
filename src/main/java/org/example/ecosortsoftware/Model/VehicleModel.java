@@ -1,9 +1,8 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.DTO.Tm.EmployeeTm;
-import org.example.ecosortsoftware.DTO.Tm.VehicleTm;
-import org.example.ecosortsoftware.DTO.VehicleDto;
-import org.example.ecosortsoftware.Utill.CrudUtill;
+import org.example.ecosortsoftware.dto.Tm.VehicleTm;
+import org.example.ecosortsoftware.dto.VehicleDto;
+import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 
 public class VehicleModel {
     public String getNextVehicleId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select vehicle_id from vehicle order by vehicle_id desc limit 1;");
+        ResultSet resultSet = SQLUtil.execute("select vehicle_id from vehicle order by vehicle_id desc limit 1;");
 
         if (resultSet.next()) {
             String lastVeId = resultSet.getString(1);
@@ -25,7 +24,7 @@ public class VehicleModel {
     }
 
     public ArrayList<VehicleTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select * from vehicle where muni_id=?", municipalId);
+        ResultSet resultSet = SQLUtil.execute("select * from vehicle where muni_id=?", municipalId);
         ArrayList<VehicleTm> vehTms = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -43,16 +42,16 @@ public class VehicleModel {
     }
 
     public boolean saveVehicle(VehicleDto vehicleDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("insert into vehicle values(?,?,?,?,?)",
+        return SQLUtil.execute("insert into vehicle values(?,?,?,?,?)",
                 vehicleDto.getVehicleId(),vehicleDto.getEmployeeId(),vehicleDto.getLicensePlate(),vehicleDto.getVehicleType(),vehicleDto.getMunicipalId());
     }
 
     public boolean updateVehicle(VehicleDto vehicleDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("Update vehicle SET employee_id=?, license_plate=?, type=?, muni_id=? WHERE vehicle_id=?",
+        return SQLUtil.execute("Update vehicle SET employee_id=?, license_plate=?, type=?, muni_id=? WHERE vehicle_id=?",
                 vehicleDto.getEmployeeId(),vehicleDto.getLicensePlate(),vehicleDto.getVehicleType(),vehicleDto.getMunicipalId(),vehicleDto.getVehicleId());
     }
 
     public boolean DeleteVehicle(String id) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("DELETE FROM vehicle WHERE vehicle_id=?",id);
+        return SQLUtil.execute("DELETE FROM vehicle WHERE vehicle_id=?",id);
     }
 }

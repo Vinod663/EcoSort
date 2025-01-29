@@ -1,10 +1,8 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.DTO.EmployeeDto;
-import org.example.ecosortsoftware.DTO.Tm.SheduleTm;
-import org.example.ecosortsoftware.DTO.Tm.WardTm;
-import org.example.ecosortsoftware.DTO.WardDto;
-import org.example.ecosortsoftware.Utill.CrudUtill;
+import org.example.ecosortsoftware.dto.Tm.WardTm;
+import org.example.ecosortsoftware.dto.WardDto;
+import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +10,7 @@ import java.util.ArrayList;
 
 public class WardModel {
     public ArrayList<WardTm> getAll(String MunicipalId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select * from division where municipal_id=?", MunicipalId);
+        ResultSet resultSet = SQLUtil.execute("select * from division where municipal_id=?", MunicipalId);
         ArrayList<WardTm> wardTms = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -27,7 +25,7 @@ public class WardModel {
     }
 
     public ArrayList<String> getAllWardNames(String MunicipalId) throws SQLException, ClassNotFoundException {
-        ResultSet result = CrudUtill.execute("select * from division where municipal_id=?", MunicipalId);
+        ResultSet result = SQLUtil.execute("select * from division where municipal_id=?", MunicipalId);
         ArrayList<String> wardNames = new ArrayList<>();
 
         while (result.next()) {
@@ -37,7 +35,7 @@ public class WardModel {
     }
 
     public WardDto FindById(String selectedId) throws SQLException, ClassNotFoundException {
-        ResultSet rst = CrudUtill.execute("select * from division where division_id=?", selectedId);
+        ResultSet rst = SQLUtil.execute("select * from division where division_id=?", selectedId);
         if (rst.next()) {
             return new WardDto(
                     rst.getString(1),

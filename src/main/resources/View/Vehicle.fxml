@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="464.0" prefWidth="800.0" stylesheets="@../CSS%20Styles/Employee.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.Controller.VehicleController">
+<AnchorPane prefHeight="464.0" prefWidth="800.0" stylesheets="@../CSS%20Styles/Employee.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ecosortsoftware.controller.VehicleController">
    <children>
       <AnchorPane prefHeight="260.0" prefWidth="807.0" styleClass="anchor-pane-background" stylesheets="@../CSS%2520Styles/backgroundStyles/VehicleBackground.css" />
       <VBox prefHeight="464.0" prefWidth="800.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

@@ -1,10 +1,8 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.DTO.EmployeeDto;
-import org.example.ecosortsoftware.DTO.Tm.EmployeeTm;
-import org.example.ecosortsoftware.DTO.Tm.SheduleTm;
-import org.example.ecosortsoftware.DTO.VehicleDto;
-import org.example.ecosortsoftware.Utill.CrudUtill;
+import org.example.ecosortsoftware.dto.EmployeeDto;
+import org.example.ecosortsoftware.view.tdm.EmployeeTm;
+import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +10,7 @@ import java.util.ArrayList;
 
 public class EmployeeModel {
     public static ArrayList<String> getAllEmpIds(String munId) throws SQLException, ClassNotFoundException {
-        ResultSet result = CrudUtill.execute("select * from employee where municipal_id=?", munId);
+        ResultSet result = SQLUtil.execute("select * from employee where municipal_id=?", munId);
         ArrayList<String> empNames = new ArrayList<>();
 
         while (result.next()) {
@@ -22,7 +20,7 @@ public class EmployeeModel {
     }
 
     public static ArrayList<EmployeeTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select * from employee where municipal_id=?", municipalId);
+        ResultSet resultSet = SQLUtil.execute("select * from employee where municipal_id=?", municipalId);
         ArrayList<EmployeeTm> empTms = new ArrayList<>();
 
         while (resultSet.next()) {
@@ -40,7 +38,7 @@ public class EmployeeModel {
     }
 
     public String getNextEmpId() throws SQLException, ClassNotFoundException {
-        ResultSet resultSet = CrudUtill.execute("select employee_id from employee order by employee_id desc limit 1;");
+        ResultSet resultSet = SQLUtil.execute("select employee_id from employee order by employee_id desc limit 1;");
 
         if (resultSet.next()) {
             String lastEmpId = resultSet.getString(1);
@@ -54,7 +52,7 @@ public class EmployeeModel {
     }
 
     public EmployeeDto FindById(String selectedId) throws SQLException, ClassNotFoundException {
-        ResultSet rst = CrudUtill.execute("select * from employee where employee_id=?", selectedId);
+        ResultSet rst = SQLUtil.execute("select * from employee where employee_id=?", selectedId);
         if (rst.next()) {
             return new EmployeeDto(
                     rst.getString(1)
@@ -68,16 +66,16 @@ public class EmployeeModel {
     }
 
     public boolean saveEmployee(EmployeeDto employeeDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("insert into employee values(?,?,?,?,?)",
+        return SQLUtil.execute("insert into employee values(?,?,?,?,?)",
                 employeeDto.getEmployeeId(),employeeDto.getEmployeeName(),employeeDto.getEmail(),employeeDto.getMunicipalId(),employeeDto.getPhoneNumber());
     }
 
     public boolean DeleteEmployee(String id) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("DELETE FROM employee WHERE employee_id=?",id);
+        return SQLUtil.execute("DELETE FROM employee WHERE employee_id=?",id);
     }
 
     public boolean updateEmployee(EmployeeDto employeeDto) throws SQLException, ClassNotFoundException {
-        return CrudUtill.execute("Update employee SET name=?, email=?, municipal_id=?, phoneNumber=? WHERE employee_id=?",
+        return SQLUtil.execute("Update employee SET name=?, email=?, municipal_id=?, phoneNumber=? WHERE employee_id=?",
         employeeDto.getEmployeeName(),employeeDto.getEmail(),employeeDto.getMunicipalId(),employeeDto.getPhoneNumber(),employeeDto.getEmployeeId());
     }
 }
