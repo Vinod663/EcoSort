@@ -84,5 +84,10 @@ public class LoginDAOimpl implements LoginDAO {
         return false;
     }
 
+    @Override
+    public ArrayList getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
 
 }

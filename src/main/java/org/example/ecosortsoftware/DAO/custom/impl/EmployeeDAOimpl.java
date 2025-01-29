@@ -85,4 +85,9 @@ public class EmployeeDAOimpl implements EmployeeDAO {
         return SQLUtil.execute("Update employee SET name=?, email=?, municipal_id=?, phoneNumber=? WHERE employee_id=?",
                 employee.getEmployeeName(),employee.getEmail(),employee.getMunicipalId(),employee.getPhoneNumber(),employee.getEmployeeId());
     }
+
+    @Override
+    public ArrayList<Employee> getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException {
+        return null;
+    }
 }

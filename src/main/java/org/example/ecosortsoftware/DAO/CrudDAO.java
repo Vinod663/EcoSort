@@ -1,6 +1,6 @@
 package org.example.ecosortsoftware.DAO;
 
-import org.example.ecosortsoftware.dto.Tm.VehicleTm;
+import org.example.ecosortsoftware.view.tdm.VehicleTm;
 import org.example.ecosortsoftware.entity.Employee;
 
 import java.sql.SQLException;
@@ -12,5 +12,5 @@ public interface CrudDAO<T> extends SuperDAO {
     boolean save(T dto) throws SQLException, ClassNotFoundException;
     boolean delete(String id) throws SQLException, ClassNotFoundException;
     boolean update(T dto) throws SQLException, ClassNotFoundException;
-
+    ArrayList<T> getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException;
 }

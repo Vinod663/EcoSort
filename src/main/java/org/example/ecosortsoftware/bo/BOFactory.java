@@ -2,6 +2,7 @@ package org.example.ecosortsoftware.bo;
 
 import org.example.ecosortsoftware.bo.impl.EmployeeBOImpl;
 import org.example.ecosortsoftware.bo.impl.LoginBOImpl;
+import org.example.ecosortsoftware.bo.impl.VehicleBOImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -13,7 +14,7 @@ public class BOFactory {
 
 
     public enum BOType {
-        LOGIN,EMPLOYEE
+        LOGIN,EMPLOYEE,VEHICLE
     }
     public SuperBO getBO(BOType type) {
         switch (type) {
@@ -21,6 +22,8 @@ public class BOFactory {
                 return new LoginBOImpl();
             case EMPLOYEE:
                 return new EmployeeBOImpl();
+            case VEHICLE:
+                return new VehicleBOImpl();
             default:
                 return null;
         }

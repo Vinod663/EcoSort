@@ -10,12 +10,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.EmployeeBO;
+import org.example.ecosortsoftware.bo.VehicleBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.EmployeeDto;
-import org.example.ecosortsoftware.dto.Tm.VehicleTm;
+import org.example.ecosortsoftware.entity.Employee;
+import org.example.ecosortsoftware.entity.Vehicle;
+import org.example.ecosortsoftware.view.tdm.VehicleTm;
 import org.example.ecosortsoftware.dto.VehicleDto;
-import org.example.ecosortsoftware.Model.EmployeeModel;
-import org.example.ecosortsoftware.Model.VehicleModel;
+
+
 
 import java.net.URL;
 import java.sql.Connection;
@@ -26,6 +31,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class VehicleController implements Initializable {
+
+    EmployeeBO employeeBO= (EmployeeBO) BOFactory.getInstance().getBO(BOFactory.BOType.EMPLOYEE);
+    VehicleBO vehicleBO= (VehicleBO) BOFactory.getInstance().getBO(BOFactory.BOType.VEHICLE);
 
     public Label EmployeeNameLabe;
     public Button ResetBtn;
@@ -69,7 +77,7 @@ public class VehicleController implements Initializable {
     @FXML
     private TextField vehicletypeText;
 
-    VehicleModel vehicleModel=new VehicleModel();
+    //VehicleModel vehicleModel=new VehicleModel();
     @FXML
     void DeleteBtnAction(ActionEvent event) {
         try{
@@ -79,7 +87,7 @@ public class VehicleController implements Initializable {
             Optional<ButtonType> buttonType = alert.showAndWait();
 
             if(buttonType.isPresent()&&buttonType.get()==ButtonType.YES){
-                boolean result=vehicleModel.DeleteVehicle(id);
+                boolean result=vehicleBO.delete(id);
 
                 if(result){
                     refershPage();
@@ -105,7 +113,7 @@ public class VehicleController implements Initializable {
         vehicleDto.setEmployeeId(employeeIdCombo.getValue());
         vehicleDto.setMunicipalId(munId);
 
-        boolean isSaved = vehicleModel.saveVehicle(vehicleDto);
+        boolean isSaved = vehicleBO.save(vehicleDto);
         if (isSaved) {
             refershPage();
             new Alert(Alert.AlertType.INFORMATION, "Vehicle Saved", ButtonType.OK).show();
@@ -124,7 +132,7 @@ public class VehicleController implements Initializable {
         vehicleDto.setEmployeeId(employeeIdCombo.getValue());
         vehicleDto.setMunicipalId(munId);
 
-        boolean isUpdated = vehicleModel.updateVehicle(vehicleDto);
+        boolean isUpdated = vehicleBO.update(vehicleDto);
         if (isUpdated) {
             refershPage();
             new Alert(Alert.AlertType.INFORMATION, "Vehicle Updated", ButtonType.OK).show();
@@ -154,7 +162,7 @@ public class VehicleController implements Initializable {
         employeeIdCombo.getItems().clear();
         EmployeeNameLabe.setText("");
         LicensePlateText.clear();
-        VehicleIdLabel.setText(vehicleModel.getNextVehicleId());
+        VehicleIdLabel.setText(vehicleBO.getNextId());
 
         loadEmployeeIds();
         loadTable();
@@ -170,10 +178,11 @@ public class VehicleController implements Initializable {
     public void loadTable() throws SQLException, ClassNotFoundException {
         ObservableList <VehicleTm> vehicleTms= FXCollections.observableArrayList();
 
-        ArrayList<VehicleTm> all = vehicleModel.getAll(municipalController.getMunicipalId());
+        ArrayList<Vehicle> all = vehicleBO.getAllFromMunicipal(municipalController.getMunicipalId());
 
-        for(VehicleTm vehicleTm:all){
-            vehicleTms.add(vehicleTm);
+        for(Vehicle vehicleTm:all){
+            vehicleTms.add(new VehicleTm(vehicleTm.getVehicleId(),vehicleTm.getEmployeeId(),vehicleTm.getLicensePlate(),
+                    vehicleTm.getVehicleType(),vehicleTm.getMunicipalId()));
         }
         VehicleTable.setItems(vehicleTms);
 
@@ -184,15 +193,15 @@ public class VehicleController implements Initializable {
         String munId = municipalController.getMunicipalId();
         System.out.println("Loading Employee Ids of "+munId);
 
-        ArrayList<String> EmpIds = EmployeeModel.getAllEmpIds(munId);
+        ArrayList<String> EmpIds = employeeBO.getAllEmpIds(munId);
         ObservableList<String> observableEmp = FXCollections.observableArrayList(EmpIds);
         employeeIdCombo.setItems(observableEmp);
     }
-    private EmployeeModel employeeModel=new EmployeeModel();
+    //private EmployeeModel employeeModel=new EmployeeModel();
 
     public void EmployeeComboAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String selectedId = employeeIdCombo.getSelectionModel().getSelectedItem();
-        EmployeeDto empDto=employeeModel.FindById(selectedId);
+        Employee empDto=employeeBO.FindById(selectedId);
 
         if (empDto!=null){
             EmployeeNameLabe.setText(empDto.getEmployeeName());
