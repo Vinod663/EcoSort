@@ -10,12 +10,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.WardBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.SheduleDto;
 import org.example.ecosortsoftware.dto.Tm.SheduleTm;
-import org.example.ecosortsoftware.dto.Tm.WardTm;
+import org.example.ecosortsoftware.dto.WardDto;
+import org.example.ecosortsoftware.view.tdm.WardTm;
 import org.example.ecosortsoftware.Model.SheduleModel;
-import org.example.ecosortsoftware.Model.WardModel;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -27,6 +29,7 @@ import java.util.*;
 
 
 public class SheduleController implements Initializable {
+    WardBO wardBO= (WardBO) BOFactory.getInstance().getBO(BOFactory.BOType.WARD);
 
     public Button SheduleReportBtn;
     @FXML
@@ -298,8 +301,13 @@ public class SheduleController implements Initializable {
         }
 
         else{
-            WardModel wardModel = new WardModel();
-            ArrayList<WardTm> allWards = wardModel.getAll(municipalController.getMunicipalId());
+            //WardModel wardModel = new WardModel();
+            ArrayList<WardDto> allFromMunicipal = wardBO.getAllFromMunicipal(municipalController.getMunicipalId());
+
+            ArrayList<WardTm> allWards = new ArrayList<>();
+            for (WardDto wardDto : allFromMunicipal) {
+                allWards.add(new WardTm(wardDto.getWardId(),wardDto.getMunicipalId(),wardDto.getWardName()));
+            }
             System.out.println("allWards in loadTable(): " + allWards);
 
             boolean result = sheduleModel.insertWards(allWards);

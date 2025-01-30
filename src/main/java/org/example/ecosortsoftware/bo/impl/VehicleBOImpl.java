@@ -4,7 +4,9 @@ import org.example.ecosortsoftware.DAO.DAOFactory;
 import org.example.ecosortsoftware.DAO.custom.VehicleDAO;
 import org.example.ecosortsoftware.bo.VehicleBO;
 import org.example.ecosortsoftware.dto.VehicleDto;
+import org.example.ecosortsoftware.dto.WardDto;
 import org.example.ecosortsoftware.entity.Vehicle;
+import org.example.ecosortsoftware.entity.Ward;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,8 +20,10 @@ public class VehicleBOImpl implements VehicleBO {
     }
 
     @Override
-    public Vehicle FindById(String selectedId) throws SQLException, ClassNotFoundException {
-        return vehicleDAO.FindById(selectedId);
+    public VehicleDto FindById(String selectedId) throws SQLException, ClassNotFoundException {
+        Vehicle vehicle = vehicleDAO.FindById(selectedId);
+        return new VehicleDto(vehicle.getVehicleId(),vehicle.getEmployeeId(),vehicle.getLicensePlate(),
+                vehicle.getVehicleType(),vehicle.getMunicipalId());
     }
 
     @Override
@@ -40,7 +44,15 @@ public class VehicleBOImpl implements VehicleBO {
     }
 
     @Override
-    public ArrayList<Vehicle> getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException {
-        return vehicleDAO.getAllFromMunicipal(municipalId);
+    public ArrayList<VehicleDto> getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException {
+        ArrayList<Vehicle> allFromMunicipal = vehicleDAO.getAllFromMunicipal(municipalId);
+
+        ArrayList<VehicleDto> vehicles = new ArrayList<>();
+
+        for(Vehicle vehicle : allFromMunicipal){
+            vehicles.add(new VehicleDto(vehicle.getVehicleId(),vehicle.getEmployeeId(),vehicle.getLicensePlate(),
+                    vehicle.getVehicleType(),vehicle.getMunicipalId()));
+        }
+        return vehicles;
     }
 }

@@ -199,9 +199,9 @@ public class ComplaintController implements Initializable {
     public void loadTable() throws SQLException, ClassNotFoundException {
         ObservableList<ComplaintsTm> complaintTms= FXCollections.observableArrayList();
 
-        ArrayList<Complaints> all = complaintBO.getAllFromMunicipal(municipalController.getMunicipalId());
+        ArrayList<ComplaintsDto> all = complaintBO.getAllFromMunicipal(municipalController.getMunicipalId());
 
-        for(Complaints complaintTm:all){
+        for(ComplaintsDto complaintTm:all){
             complaintTms.add(new ComplaintsTm(complaintTm.getComplaintId(),complaintTm.getDescription(),
                     complaintTm.getStatus(),complaintTm.getMunicipalId()));
         }

@@ -30,8 +30,10 @@ public class EmployeeBOImpl implements EmployeeBO {
     }
 
     @Override
-    public Employee FindById(String selectedId) throws SQLException, ClassNotFoundException {
-        return employeeDAO.FindById(selectedId);
+    public EmployeeDto FindById(String selectedId) throws SQLException, ClassNotFoundException {
+        Employee employee = employeeDAO.FindById(selectedId);
+        return new EmployeeDto(employee.getEmployeeId(),employee.getEmployeeName(),employee.getEmail(),
+                employee.getMunicipalId(),employee.getPhoneNumber());
     }
 
     @Override

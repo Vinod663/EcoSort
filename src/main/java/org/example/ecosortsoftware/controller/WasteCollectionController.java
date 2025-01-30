@@ -14,6 +14,7 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.ecosortsoftware.bo.BOFactory;
 import org.example.ecosortsoftware.bo.InventoryBO;
+import org.example.ecosortsoftware.bo.WardBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.*;
 import org.example.ecosortsoftware.dto.Tm.WasteCollectionTm;
@@ -32,6 +33,7 @@ import java.util.*;
 public class WasteCollectionController implements Initializable {
 
     InventoryBO inventoryBO= (InventoryBO) BOFactory.getInstance().getBO(BOFactory.BOType.INVENTORY);
+    WardBO wardBO= (WardBO) BOFactory.getInstance().getBO(BOFactory.BOType.WARD);
 
     public Label divisionNameLab;
     public Button wasteReport;
@@ -112,7 +114,7 @@ public class WasteCollectionController implements Initializable {
                 String inventoryId=inventoryIdLab.getText();
                 double inventoryCapacity = inventoryBO.getInventoryCapacity(inventoryIdLab.getText());
 
-                Inventory inventory = inventoryBO.getAll(muniId);
+                InventoryDto inventory = inventoryBO.getAll(muniId);
 
                 InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                         inventory.getMunicipalId(),inventory.getCapacity());
@@ -190,7 +192,7 @@ public class WasteCollectionController implements Initializable {
                 double collectedWaste = recyclableWaste + nonRecyclableWaste + degradableWaste;
                 System.out.println("Collected waste amount:" + collectedWaste);
 //                double previousTotalWaste = wasteCollectionModel.getTotalWaste(muniId);
-                Inventory inventory = inventoryBO.getAll(muniId);
+                InventoryDto inventory = inventoryBO.getAll(muniId);
 
                 InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                         inventory.getMunicipalId(),inventory.getCapacity());
@@ -357,7 +359,7 @@ public class WasteCollectionController implements Initializable {
                 double previousTotalWaste = wasteCollectionModel.getTotalWaste(muniId);
                 System.out.println("Previous Total Waste amount in Inventory:" + previousTotalWaste);
 
-                Inventory inventory = inventoryBO.getAll(muniId);
+                InventoryDto inventory = inventoryBO.getAll(muniId);
 
                 InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                         inventory.getMunicipalId(),inventory.getCapacity());
@@ -546,7 +548,7 @@ public class WasteCollectionController implements Initializable {
 
 
     private void loadInventoryId(String municipalId) throws SQLException, ClassNotFoundException {
-        Inventory inventoryDto= inventoryBO.getAll(municipalId);
+        InventoryDto inventoryDto= inventoryBO.getAll(municipalId);
 
         if (inventoryDto!=null){
             inventoryIdLab.setText(inventoryDto.getInventoryId());
@@ -568,10 +570,10 @@ public class WasteCollectionController implements Initializable {
         ObservableList<String> observableVeh = FXCollections.observableArrayList(VehicleIds);
         vehicleIdCombo.setItems(observableVeh);
     }
-    WardModel wardModel=new WardModel();
+    //WardModel wardModel=new WardModel();
     public void divisionIdComboAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String selectedId = divisionIdCombo.getSelectionModel().getSelectedItem();
-        WardDto wardDto= wardModel.FindById(selectedId);
+        WardDto wardDto= wardBO.FindById(selectedId);
 
         if (wardDto!=null){
             divisionNameLab.setText(wardDto.getWardName());

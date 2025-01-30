@@ -14,7 +14,7 @@ public interface EmployeeBO extends SuperBO{
 
     String getNextId() throws SQLException, ClassNotFoundException;
 
-    Employee FindById(String selectedId) throws SQLException, ClassNotFoundException;
+    EmployeeDto FindById(String selectedId) throws SQLException, ClassNotFoundException;
 
     boolean save(EmployeeDto employeeDto) throws SQLException, ClassNotFoundException;
 

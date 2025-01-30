@@ -13,7 +13,7 @@ public class DAOFactory {
     }
 
     public enum DAOType{
-        LOGIN, EMPLOYEE,VEHICLE,COMPLAINT,MUNICIPAL,INVENTORY
+        LOGIN, EMPLOYEE,VEHICLE,COMPLAINT,MUNICIPAL,INVENTORY,WARD
     }
 
     public SuperDAO getDAO(DAOType type) {
@@ -24,6 +24,7 @@ public class DAOFactory {
             case COMPLAINT: return new ComplaintDAOimpl();
             case MUNICIPAL: return new MunicipalDAOimpl();
             case INVENTORY: return new InventoryDAOimpl();
+            case WARD: return new WardDAOimpl();
             default: return null;
 
 

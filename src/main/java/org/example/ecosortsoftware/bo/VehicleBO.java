@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public interface VehicleBO extends SuperBO{
     String getNextId() throws SQLException, ClassNotFoundException;
 
-    Vehicle FindById(String selectedId) throws SQLException, ClassNotFoundException;
+    VehicleDto FindById(String selectedId) throws SQLException, ClassNotFoundException;
 
     boolean save(VehicleDto vehicledto) throws SQLException, ClassNotFoundException;
 
@@ -17,5 +17,5 @@ public interface VehicleBO extends SuperBO{
 
     boolean update(VehicleDto vehicledto) throws SQLException, ClassNotFoundException;
 
-    ArrayList<Vehicle> getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException;
+    ArrayList<VehicleDto> getAllFromMunicipal(String municipalId) throws SQLException, ClassNotFoundException;
 }

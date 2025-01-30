@@ -178,9 +178,9 @@ public class VehicleController implements Initializable {
     public void loadTable() throws SQLException, ClassNotFoundException {
         ObservableList <VehicleTm> vehicleTms= FXCollections.observableArrayList();
 
-        ArrayList<Vehicle> all = vehicleBO.getAllFromMunicipal(municipalController.getMunicipalId());
+        ArrayList<VehicleDto> all = vehicleBO.getAllFromMunicipal(municipalController.getMunicipalId());
 
-        for(Vehicle vehicleTm:all){
+        for(VehicleDto vehicleTm:all){
             vehicleTms.add(new VehicleTm(vehicleTm.getVehicleId(),vehicleTm.getEmployeeId(),vehicleTm.getLicensePlate(),
                     vehicleTm.getVehicleType(),vehicleTm.getMunicipalId()));
         }
@@ -201,7 +201,7 @@ public class VehicleController implements Initializable {
 
     public void EmployeeComboAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String selectedId = employeeIdCombo.getSelectionModel().getSelectedItem();
-        Employee empDto=employeeBO.FindById(selectedId);
+        EmployeeDto empDto=employeeBO.FindById(selectedId);
 
         if (empDto!=null){
             EmployeeNameLabe.setText(empDto.getEmployeeName());

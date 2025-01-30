@@ -6,7 +6,7 @@ import org.example.ecosortsoftware.entity.Inventory;
 import java.sql.SQLException;
 
 public interface InventoryBO extends SuperBO{
-    Inventory getAll(String municipalId) throws SQLException, ClassNotFoundException;
+    InventoryDto getAll(String municipalId) throws SQLException, ClassNotFoundException;
 
     double getInventoryCapacity(String inventoryId) throws SQLException, ClassNotFoundException;
 

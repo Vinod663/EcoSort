@@ -130,7 +130,7 @@ public class InventoryController implements Initializable {
         muniId = municipalController.getMunicipalId();
         System.out.println("Loading Inventory data of "+muniId);
 
-        Inventory inventory = inventoryBO.getAll(muniId);
+        InventoryDto inventory = inventoryBO.getAll(muniId);
 
         InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                 inventory.getMunicipalId(),inventory.getCapacity());

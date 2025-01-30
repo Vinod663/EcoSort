@@ -2,7 +2,7 @@ package org.example.ecosortsoftware.Model;
 
 import org.example.ecosortsoftware.dto.SheduleDto;
 import org.example.ecosortsoftware.dto.Tm.SheduleTm;
-import org.example.ecosortsoftware.dto.Tm.WardTm;
+import org.example.ecosortsoftware.view.tdm.WardTm;
 import org.example.ecosortsoftware.DAO.SQLUtil;
 
 import java.sql.ResultSet;

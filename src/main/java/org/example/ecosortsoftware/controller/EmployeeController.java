@@ -22,7 +22,6 @@ import org.example.ecosortsoftware.bo.EmployeeBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.EmployeeDto;
 import org.example.ecosortsoftware.view.tdm.EmployeeTm;
-import org.example.ecosortsoftware.Model.WardModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -260,7 +259,7 @@ public class EmployeeController implements Initializable {
         munId=municipalController.getMunicipalId();
 //        System.out.println("check "+munId);
     }
-    WardModel wardModel=new WardModel();
+   // WardModel wardModel=new WardModel();
   //  EmployeeModel employeeModel=new EmployeeModel();
     MunicipalController municipalController=new MunicipalController();
     String munId;
