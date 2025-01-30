@@ -6,11 +6,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.EmployeeBO;
+import org.example.ecosortsoftware.bo.InventoryBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.DisposalDto;
 import org.example.ecosortsoftware.dto.InventoryDto;
 import org.example.ecosortsoftware.Model.DisposalModel;
-import org.example.ecosortsoftware.Model.InventoryModel;
+import org.example.ecosortsoftware.entity.Inventory;
+
 
 import java.net.URL;
 import java.sql.Connection;
@@ -23,6 +27,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class InventoryController implements Initializable {
+
+    InventoryBO inventoryBO= (InventoryBO) BOFactory.getInstance().getBO(BOFactory.BOType.INVENTORY);
 
     public TextField deployWasteText;
     public Button deployBtn;
@@ -75,7 +81,7 @@ public class InventoryController implements Initializable {
                 inventoryDto.setMunicipalId(muniId);
                 inventoryDto.setCapacity(Double.parseDouble(wasteCapacityText.getText()));
 
-                boolean isUpdated = inventoryModel.updateInventory(inventoryDto);
+                boolean isUpdated = inventoryBO.update(inventoryDto);
                 if (isUpdated) {
                     refreshPage();
                     new Alert(Alert.AlertType.INFORMATION, "Inventory Updated", ButtonType.OK).show();
@@ -119,12 +125,17 @@ public class InventoryController implements Initializable {
     private void refreshPage() throws SQLException, ClassNotFoundException {
         loadData();
     }
-    InventoryModel inventoryModel=new InventoryModel();
+
     private void loadData() throws SQLException, ClassNotFoundException {
         muniId = municipalController.getMunicipalId();
         System.out.println("Loading Inventory data of "+muniId);
 
-        InventoryDto all = inventoryModel.getAll(muniId);
+        Inventory inventory = inventoryBO.getAll(muniId);
+
+        InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
+                inventory.getMunicipalId(),inventory.getCapacity());
+
+        //  Inventory all = inventoryBO.getAll(muniId);
         System.out.println(all);
         String currentStatus=all.getStatus();
         if(currentStatus.equals("Inactive")){
@@ -169,7 +180,7 @@ public class InventoryController implements Initializable {
                 inventoryDto.setMunicipalId(muniId);
                 inventoryDto.setCapacity(Double.parseDouble(wasteCapacityLab.getText()));
 
-                boolean isUpdated = inventoryModel.updateInventory(inventoryDto);
+                boolean isUpdated = inventoryBO.update(inventoryDto);
                 if (isUpdated) {
                     System.out.println("Check");
                     refreshPage();
