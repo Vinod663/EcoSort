@@ -15,7 +15,11 @@ public class WardBOImpl implements WardBO {
     @Override
     public WardDto FindById(String selectedId) throws SQLException, ClassNotFoundException {
         Ward ward = wardDAO.FindById(selectedId);
-        return new WardDto(ward.getWardId(),ward.getMunicipalId(),ward.getWardName());
+        if (ward == null) {
+            return null; // Return null to handle it in the controller
+        }
+
+        return new WardDto(ward.getWardId(), ward.getMunicipalId(), ward.getWardName());
     }
 
     @Override

@@ -14,7 +14,7 @@ import org.example.ecosortsoftware.bo.BOFactory;
 import org.example.ecosortsoftware.bo.WardBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.SheduleDto;
-import org.example.ecosortsoftware.dto.Tm.SheduleTm;
+import org.example.ecosortsoftware.view.tdm.SheduleTm;
 import org.example.ecosortsoftware.dto.WardDto;
 import org.example.ecosortsoftware.view.tdm.WardTm;
 import org.example.ecosortsoftware.Model.SheduleModel;

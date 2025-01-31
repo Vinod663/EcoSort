@@ -14,10 +14,11 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.ecosortsoftware.bo.BOFactory;
 import org.example.ecosortsoftware.bo.InventoryBO;
+import org.example.ecosortsoftware.bo.RecyclingBO;
 import org.example.ecosortsoftware.bo.WardBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.*;
-import org.example.ecosortsoftware.dto.Tm.WasteCollectionTm;
+import org.example.ecosortsoftware.view.tdm.WasteCollectionTm;
 import org.example.ecosortsoftware.Model.*;
 import org.example.ecosortsoftware.entity.Inventory;
 
@@ -34,6 +35,7 @@ public class WasteCollectionController implements Initializable {
 
     InventoryBO inventoryBO= (InventoryBO) BOFactory.getInstance().getBO(BOFactory.BOType.INVENTORY);
     WardBO wardBO= (WardBO) BOFactory.getInstance().getBO(BOFactory.BOType.WARD);
+    RecyclingBO recyclingBO= (RecyclingBO) BOFactory.getInstance().getBO(BOFactory.BOType.RECYCLING);
 
     public Label divisionNameLab;
     public Button wasteReport;
@@ -165,7 +167,7 @@ public class WasteCollectionController implements Initializable {
     void ResetBtnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         refrshPage();
     }
-    RecyclingModel recyclingModel=new RecyclingModel();
+    //RecyclingModel recyclingModel=new RecyclingModel();
     @FXML
 
     void SaveBtnAction(ActionEvent event) {
@@ -256,7 +258,7 @@ public class WasteCollectionController implements Initializable {
                         refrshPage();
                         new Alert(Alert.AlertType.INFORMATION, "WasteCollection and Inventory data Saved", ButtonType.OK).show();
                         if (recyclableWaste > 0) {//Recycling save
-                            String recyclingId = recyclingModel.getNextRecyclingId();
+                            String recyclingId = recyclingBO.getNextId();
                             System.out.println("Recycling Id:" + recyclingId);
 
                             RecyclingDto recyclingDto = new RecyclingDto();
@@ -268,7 +270,7 @@ public class WasteCollectionController implements Initializable {
                             recyclingDto.setCollectionId(collId);
 
 
-                            boolean isRecyclingUpdated = recyclingModel.saveRecycling(recyclingDto);
+                            boolean isRecyclingUpdated = recyclingBO.save(recyclingDto);
                             if (isRecyclingUpdated) {
 //                                refrshPage();
                                 System.out.println("Recycling saved");
@@ -433,7 +435,7 @@ public class WasteCollectionController implements Initializable {
                         new Alert(Alert.AlertType.INFORMATION, "WasteCollection and Inventory Updated", ButtonType.OK).show();
 //                        if (recyclableWaste > 0) {//Recycling save
 
-                            String recyclingId = recyclingModel.getNextRecyclingId();
+                            String recyclingId = recyclingBO.getNextId();
                             System.out.println("Recycling Id:" + recyclingId);
 
                             RecyclingDto recyclingDto = new RecyclingDto();
@@ -445,7 +447,7 @@ public class WasteCollectionController implements Initializable {
                             recyclingDto.setCollectionId(selectedItem.getCollectionId());
 
 
-                            boolean isRecyclingUpdated = recyclingModel.updateRecycling(recyclingDto);
+                            boolean isRecyclingUpdated = recyclingBO.update(recyclingDto);
                             if (isRecyclingUpdated) {
 //                                refrshPage();
                                 System.out.println("Recycling saved");
@@ -573,6 +575,12 @@ public class WasteCollectionController implements Initializable {
     //WardModel wardModel=new WardModel();
     public void divisionIdComboAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String selectedId = divisionIdCombo.getSelectionModel().getSelectedItem();
+
+//        if (selectedId == null) {
+//            new Alert(Alert.AlertType.ERROR, "No division selected.!", ButtonType.OK).show();
+//            return;
+//        }
+
         WardDto wardDto= wardBO.FindById(selectedId);
 
         if (wardDto!=null){

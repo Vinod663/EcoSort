@@ -1,7 +1,7 @@
 package org.example.ecosortsoftware.Model;
 
 import org.example.ecosortsoftware.dto.SheduleDto;
-import org.example.ecosortsoftware.dto.Tm.SheduleTm;
+import org.example.ecosortsoftware.view.tdm.SheduleTm;
 import org.example.ecosortsoftware.view.tdm.WardTm;
 import org.example.ecosortsoftware.DAO.SQLUtil;
 

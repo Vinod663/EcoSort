@@ -1,6 +1,6 @@
 package org.example.ecosortsoftware.Model;
 
-import org.example.ecosortsoftware.dto.Tm.WasteCollectionTm;
+import org.example.ecosortsoftware.view.tdm.WasteCollectionTm;
 import org.example.ecosortsoftware.dto.WasteCollectionDto;
 import org.example.ecosortsoftware.DAO.SQLUtil;
 
