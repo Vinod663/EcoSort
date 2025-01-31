@@ -7,12 +7,12 @@ import javafx.scene.control.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.DisposalBO;
 import org.example.ecosortsoftware.bo.EmployeeBO;
 import org.example.ecosortsoftware.bo.InventoryBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.DisposalDto;
 import org.example.ecosortsoftware.dto.InventoryDto;
-import org.example.ecosortsoftware.Model.DisposalModel;
 import org.example.ecosortsoftware.entity.Inventory;
 
 
@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 public class InventoryController implements Initializable {
 
     InventoryBO inventoryBO= (InventoryBO) BOFactory.getInstance().getBO(BOFactory.BOType.INVENTORY);
+    DisposalBO disposalBO= (DisposalBO) BOFactory.getInstance().getBO(BOFactory.BOType.DISPOSAL);
 
     public TextField deployWasteText;
     public Button deployBtn;
@@ -186,12 +187,12 @@ public class InventoryController implements Initializable {
                     refreshPage();
                     LocalDate currentDate = LocalDate.now();
                     DisposalDto disposalDto=new DisposalDto();
-                    DisposalModel disposalModel=new DisposalModel();
-                    disposalDto.setDisposalId(disposalModel.getNextDisposalId());
+                    //DisposalModel disposalModel=new DisposalModel();
+                    disposalDto.setDisposalId(disposalBO.getNextId());
                     disposalDto.setDisposalDate(java.sql.Date.valueOf(currentDate));
                     disposalDto.setWasteAmount(deployWaste);
                     disposalDto.setMunicipalId(muniId);
-                    boolean disposalResult = disposalModel.saveDisposal(disposalDto);
+                    boolean disposalResult = disposalBO.save(disposalDto);
                     if (disposalResult) {
                         System.out.println("Disposal successfully saved!");
                     }
