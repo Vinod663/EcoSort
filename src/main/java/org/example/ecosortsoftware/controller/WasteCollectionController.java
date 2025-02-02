@@ -12,10 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
-import org.example.ecosortsoftware.bo.BOFactory;
-import org.example.ecosortsoftware.bo.InventoryBO;
-import org.example.ecosortsoftware.bo.RecyclingBO;
-import org.example.ecosortsoftware.bo.WardBO;
+import org.example.ecosortsoftware.bo.*;
+import org.example.ecosortsoftware.bo.impl.PlaceWasteDataBOImpl;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.*;
 import org.example.ecosortsoftware.view.tdm.WasteCollectionTm;
@@ -33,9 +31,11 @@ import java.util.*;
 
 public class WasteCollectionController implements Initializable {
 
-    InventoryBO inventoryBO= (InventoryBO) BOFactory.getInstance().getBO(BOFactory.BOType.INVENTORY);
+    /*InventoryBO inventoryBO= (InventoryBO) BOFactory.getInstance().getBO(BOFactory.BOType.INVENTORY);
     WardBO wardBO= (WardBO) BOFactory.getInstance().getBO(BOFactory.BOType.WARD);
     RecyclingBO recyclingBO= (RecyclingBO) BOFactory.getInstance().getBO(BOFactory.BOType.RECYCLING);
+    VehicleBO vehicleBO= (VehicleBO) BOFactory.getInstance().getBO(BOFactory.BOType.VEHICLE);*/
+    PlaceWasteDataBO placeWasteBO= (PlaceWasteDataBO) BOFactory.getInstance().getBO(BOFactory.BOType.PLACE_WASTE);
 
     public Label divisionNameLab;
     public Button wasteReport;
@@ -114,9 +114,9 @@ public class WasteCollectionController implements Initializable {
             if(buttonType.isPresent()&&buttonType.get()==ButtonType.YES){
                 String collectionId=collectionIdLab.getText();
                 String inventoryId=inventoryIdLab.getText();
-                double inventoryCapacity = inventoryBO.getInventoryCapacity(inventoryIdLab.getText());
+                double inventoryCapacity = placeWasteBO.getInventoryCapacity(inventoryIdLab.getText());
 
-                InventoryDto inventory = inventoryBO.getAll(muniId);
+                InventoryDto inventory = placeWasteBO.getAll(muniId);
 
                 InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                         inventory.getMunicipalId(),inventory.getCapacity());
@@ -126,7 +126,7 @@ public class WasteCollectionController implements Initializable {
                 double deleteNonrecyclable=selectedItem.getNonRecyclableWasteAmount();
                 double newTotWaste=previousTotalWaste-deleteNonrecyclable;
 
-                boolean result=wasteCollectionModel.DeleteCollection(collectionId);
+                boolean result=placeWasteBO.delete(collectionId);
 
                 if(result){
 //                    refrshPage();
@@ -141,7 +141,7 @@ public class WasteCollectionController implements Initializable {
                     inventoryDto.setMunicipalId(muniId);
                     inventoryDto.setCapacity(inventoryCapacity);
 
-                    boolean updateInventory=inventoryBO.update(inventoryDto);
+                    boolean updateInventory=placeWasteBO.update(inventoryDto);
 
                     if(updateInventory){
                         refrshPage();
@@ -194,7 +194,7 @@ public class WasteCollectionController implements Initializable {
                 double collectedWaste = recyclableWaste + nonRecyclableWaste + degradableWaste;
                 System.out.println("Collected waste amount:" + collectedWaste);
 //                double previousTotalWaste = wasteCollectionModel.getTotalWaste(muniId);
-                InventoryDto inventory = inventoryBO.getAll(muniId);
+                InventoryDto inventory = placeWasteBO.getAll(muniId);
 
                 InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                         inventory.getMunicipalId(),inventory.getCapacity());
@@ -203,7 +203,7 @@ public class WasteCollectionController implements Initializable {
                 System.out.println("Previous Total Waste amount in Inventory:" + previousTotalWaste);
                 double newTotalWaste = previousTotalWaste + nonRecyclableWaste;
                 System.out.println("New Total Waste amount in Inventory:" + newTotalWaste);
-                double inventoryCapacity = inventoryBO.getInventoryCapacity(inventoryIdLab.getText());
+                double inventoryCapacity = placeWasteBO.getInventoryCapacity(inventoryIdLab.getText());
                 System.out.println("Inventory Capacity:" + inventoryCapacity);
 
                 if (inventoryCapacity < newTotalWaste) {
@@ -239,7 +239,9 @@ public class WasteCollectionController implements Initializable {
                 collectionDto.setNonRecyclableWasteAmount(nonRecyclableWaste);
                 collectionDto.setMunicipalId(muniId);
 
-                boolean isUpdated = wasteCollectionModel.saveCollection(collectionDto);
+                /*System.out.println("Saved Municipal Id: "+muniId);
+                WasteCollectionModel wasteCollectionModel = new WasteCollectionModel();*/
+                boolean isUpdated = placeWasteBO.save(collectionDto);
                 if (isUpdated) {
 //                    refrshPage();
                     System.out.println("Waste Collection Updated");
@@ -251,14 +253,14 @@ public class WasteCollectionController implements Initializable {
                     inventoryDto.setMunicipalId(muniId);
                     inventoryDto.setCapacity(inventoryCapacity);
 
-                    boolean isInventoryUpdated = inventoryBO.update(inventoryDto);
+                    boolean isInventoryUpdated = placeWasteBO.update(inventoryDto);
                     if (isInventoryUpdated) {
 //                        refreshPage();
                         System.out.println("Inventory Updated");
                         refrshPage();
                         new Alert(Alert.AlertType.INFORMATION, "WasteCollection and Inventory data Saved", ButtonType.OK).show();
                         if (recyclableWaste > 0) {//Recycling save
-                            String recyclingId = recyclingBO.getNextId();
+                            String recyclingId = placeWasteBO.getNextId();
                             System.out.println("Recycling Id:" + recyclingId);
 
                             RecyclingDto recyclingDto = new RecyclingDto();
@@ -270,7 +272,7 @@ public class WasteCollectionController implements Initializable {
                             recyclingDto.setCollectionId(collId);
 
 
-                            boolean isRecyclingUpdated = recyclingBO.save(recyclingDto);
+                            boolean isRecyclingUpdated = placeWasteBO.save(recyclingDto);
                             if (isRecyclingUpdated) {
 //                                refrshPage();
                                 System.out.println("Recycling saved");
@@ -358,10 +360,10 @@ public class WasteCollectionController implements Initializable {
 
                 double collectedWaste = recyclableWaste + nonRecyclableWaste + degradableWaste;
                 System.out.println("Collected waste amount:" + collectedWaste);
-                double previousTotalWaste = wasteCollectionModel.getTotalWaste(muniId);
+                double previousTotalWaste = placeWasteBO.getTotalWaste(muniId);
                 System.out.println("Previous Total Waste amount in Inventory:" + previousTotalWaste);
 
-                InventoryDto inventory = inventoryBO.getAll(muniId);
+                InventoryDto inventory = placeWasteBO.getAll(muniId);
 
                 InventoryDto all = new InventoryDto(inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),
                         inventory.getMunicipalId(),inventory.getCapacity());
@@ -378,7 +380,7 @@ public class WasteCollectionController implements Initializable {
                 }
 
                 System.out.println("New Total Waste amount in Inventory:" + newTotalWaste);
-                double inventoryCapacity = inventoryBO.getInventoryCapacity(inventoryIdLab.getText());
+                double inventoryCapacity = placeWasteBO.getInventoryCapacity(inventoryIdLab.getText());
                 System.out.println("Inventory Capacity:" + inventoryCapacity);
 
                 if (inventoryCapacity < newTotalWaste) {
@@ -414,7 +416,9 @@ public class WasteCollectionController implements Initializable {
                 collectionDto.setNonRecyclableWasteAmount(nonRecyclableWaste);
                 collectionDto.setMunicipalId(muniId);
 
-                boolean isUpdated = wasteCollectionModel.updateCollection(collectionDto);
+//                System.out.println("Saved Municipal Id: "+muniId);
+//                WasteCollectionModel wasteCollectionModel = new WasteCollectionModel();
+                boolean isUpdated = placeWasteBO.updateCollection(collectionDto);
                 if (isUpdated) {
 //                    refrshPage();
                     System.out.println("Waste Collection Updated");
@@ -426,7 +430,7 @@ public class WasteCollectionController implements Initializable {
                     inventoryDto.setMunicipalId(muniId);
                     inventoryDto.setCapacity(inventoryCapacity);
 
-                    boolean isInventoryUpdated = inventoryBO.update(inventoryDto);
+                    boolean isInventoryUpdated = placeWasteBO.update(inventoryDto);
                     if (isInventoryUpdated) {
 //                        refreshPage();
                         System.out.println("Inventory Updated");
@@ -435,7 +439,7 @@ public class WasteCollectionController implements Initializable {
                         new Alert(Alert.AlertType.INFORMATION, "WasteCollection and Inventory Updated", ButtonType.OK).show();
 //                        if (recyclableWaste > 0) {//Recycling save
 
-                            String recyclingId = recyclingBO.getNextId();
+                            String recyclingId = placeWasteBO.getNextId();
                             System.out.println("Recycling Id:" + recyclingId);
 
                             RecyclingDto recyclingDto = new RecyclingDto();
@@ -447,7 +451,7 @@ public class WasteCollectionController implements Initializable {
                             recyclingDto.setCollectionId(selectedItem.getCollectionId());
 
 
-                            boolean isRecyclingUpdated = recyclingBO.update(recyclingDto);
+                            boolean isRecyclingUpdated = placeWasteBO.update(recyclingDto);
                             if (isRecyclingUpdated) {
 //                                refrshPage();
                                 System.out.println("Recycling saved");
@@ -516,9 +520,9 @@ public class WasteCollectionController implements Initializable {
 
 
     }
-    WasteCollectionModel wasteCollectionModel = new WasteCollectionModel();
+    //WasteCollectionModel wasteCollectionModel = new WasteCollectionModel();
     private void refrshPage() throws SQLException, ClassNotFoundException {
-        collectionIdLab.setText(String.valueOf(wasteCollectionModel.getNextCollectionId()));
+        collectionIdLab.setText(String.valueOf(placeWasteBO.getNextId()));
 
         vehicleIdCombo.getItems().clear();
         loadVehicleIds(muniId);
@@ -540,7 +544,7 @@ public class WasteCollectionController implements Initializable {
     public void loadTable(String municipalId) throws ClassNotFoundException, SQLException {
         ObservableList <WasteCollectionTm> collectionTms= FXCollections.observableArrayList();
 
-        ArrayList<WasteCollectionTm> all = wasteCollectionModel.getAll(municipalId);
+        ArrayList<WasteCollectionTm> all = placeWasteBO.getAllWasteData(municipalId);
 
         for(WasteCollectionTm collectionTm:all){
             collectionTms.add(collectionTm);
@@ -550,7 +554,7 @@ public class WasteCollectionController implements Initializable {
 
 
     private void loadInventoryId(String municipalId) throws SQLException, ClassNotFoundException {
-        InventoryDto inventoryDto= inventoryBO.getAll(municipalId);
+        InventoryDto inventoryDto= placeWasteBO.getAll(municipalId);
 
         if (inventoryDto!=null){
             inventoryIdLab.setText(inventoryDto.getInventoryId());
@@ -560,7 +564,7 @@ public class WasteCollectionController implements Initializable {
     private void loadDivisionIds(String municipalId) throws SQLException, ClassNotFoundException {
         System.out.println("Loading Division Ids of "+municipalId);
 
-        ArrayList<String> DivisionIds = WasteCollectionModel.getAllDevisionIds(municipalId);
+        ArrayList<String> DivisionIds = placeWasteBO.getAllDevisionIds(municipalId);
         ObservableList<String> observableDiv = FXCollections.observableArrayList(DivisionIds);
         divisionIdCombo.setItems(observableDiv);
     }
@@ -568,7 +572,7 @@ public class WasteCollectionController implements Initializable {
     private void loadVehicleIds(String municipalId) throws SQLException, ClassNotFoundException {
         System.out.println("Loading Vehicle Ids of "+municipalId);
 
-        ArrayList<String> VehicleIds = WasteCollectionModel.getAllVehicleIds(municipalId);
+        ArrayList<String> VehicleIds = placeWasteBO.getAllVehicleIds(municipalId);
         ObservableList<String> observableVeh = FXCollections.observableArrayList(VehicleIds);
         vehicleIdCombo.setItems(observableVeh);
     }
@@ -581,7 +585,7 @@ public class WasteCollectionController implements Initializable {
 //            return;
 //        }
 
-        WardDto wardDto= wardBO.FindById(selectedId);
+        WardDto wardDto= placeWasteBO.FindById(selectedId);
 
         if (wardDto!=null){
             divisionNameLab.setText(wardDto.getWardName());

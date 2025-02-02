@@ -43,7 +43,7 @@ public class LoginController {
         String EnteredUsername = UserNameTxtId.getText();
         String EnteredPassword = PswFieldId.getText();
 
-        if (loginBO.authenticate(EnteredUsername, EnteredPassword)) {//////temporary........*************
+        /*if (loginBO.authenticate(EnteredUsername, EnteredPassword)) {//////temporary........**************/
             System.out.println("Login successful!");
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Dashboard.fxml"));
@@ -76,9 +76,9 @@ public class LoginController {
 //            AnchorPane loginPane = FXMLLoader.load(getClass().getResource("/View/Dashboard.fxml"));
 //            ancLogin.getChildren().add(loginPane);
 
-        } //Temporary..................******************
+        /*} //Temporary..................*******************/
 
-        else {// Temporary...........................*************
+        /*else {// Temporary...........................*************
 
             if(loginBO.authenticateUsername(EnteredUsername)) {
                 UserNameTxtId.setStyle("-fx-text-box-border: green; -fx-text-inner-color: green;");
@@ -98,7 +98,7 @@ public class LoginController {
 //            }
 
 
-        }
+        }*/// Temporary...........................*************
     }
 
 

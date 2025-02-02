@@ -58,4 +58,14 @@ public class WardDAOimpl implements WardDAO {
         }
         return wards;
     }
+
+    public static ArrayList<String> getAllDevisionIds(String municipalId) throws SQLException, ClassNotFoundException {
+        ResultSet result = SQLUtil.execute("select * from division where municipal_id=?", municipalId);
+        ArrayList<String> devIds = new ArrayList<>();
+
+        while (result.next()) {
+            devIds.add(result.getString("division_id"));
+        }
+        return devIds;
+    }
 }

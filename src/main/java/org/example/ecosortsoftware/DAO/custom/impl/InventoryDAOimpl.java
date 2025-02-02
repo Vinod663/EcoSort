@@ -57,7 +57,8 @@ public class InventoryDAOimpl implements InventoryDAO {
     @Override
     public boolean update(Inventory inventory) throws SQLException, ClassNotFoundException {
         return SQLUtil.execute("update inventory set inventory_id=?, waste_amount=?, status=?, capacity=? where municipalId=?",
-                inventory.getInventoryId(),inventory.getWasteAmount(),inventory.getStatus(),inventory.getCapacity(),inventory.getMunicipalId());
+                inventory.getInventoryId(),inventory.getWasteAmount(),
+                inventory.getStatus(),inventory.getCapacity(),inventory.getMunicipalId());
     }
 
     @Override

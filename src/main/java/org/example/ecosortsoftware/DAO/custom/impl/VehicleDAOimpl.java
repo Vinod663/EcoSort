@@ -67,5 +67,17 @@ public class VehicleDAOimpl implements VehicleDAO {
         return vehTms;
     }
 
+    public static ArrayList<String> getAllVehicleIds(String municipalId) throws SQLException, ClassNotFoundException {
+        ResultSet result = SQLUtil.execute("select * from vehicle where muni_id=?", municipalId);
+        ArrayList<String> vehIds = new ArrayList<>();
+
+        while (result.next()) {
+            vehIds.add(result.getString("vehicle_id"));
+        }
+        return vehIds;
+    }
+
+
+
 
 }

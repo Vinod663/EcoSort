@@ -14,9 +14,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.PlaceWasteDataBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.WasteCollectionDto;
-import org.example.ecosortsoftware.Model.WasteCollectionModel;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +33,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class StaticsController implements Initializable {
+    PlaceWasteDataBO placeWasteBO= (PlaceWasteDataBO) BOFactory.getInstance().getBO(BOFactory.BOType.PLACE_WASTE);
 
     public Button logWasteBtn;
     public AnchorPane Home;
@@ -111,7 +114,7 @@ public class StaticsController implements Initializable {
 
 
         // Get data from the model
-        ArrayList<WasteCollectionDto> stats = WasteCollectionModel.GetData(munId);
+        ArrayList<WasteCollectionDto> stats = placeWasteBO.getData(munId);
         System.out.println(stats);
 
         // Add data points to the series

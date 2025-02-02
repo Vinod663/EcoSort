@@ -2,11 +2,10 @@ package org.example.ecosortsoftware.bo.impl;
 
 import org.example.ecosortsoftware.DAO.DAOFactory;
 import org.example.ecosortsoftware.DAO.custom.VehicleDAO;
+import org.example.ecosortsoftware.DAO.custom.impl.VehicleDAOimpl;
 import org.example.ecosortsoftware.bo.VehicleBO;
 import org.example.ecosortsoftware.dto.VehicleDto;
-import org.example.ecosortsoftware.dto.WardDto;
 import org.example.ecosortsoftware.entity.Vehicle;
-import org.example.ecosortsoftware.entity.Ward;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,5 +53,10 @@ public class VehicleBOImpl implements VehicleBO {
                     vehicle.getVehicleType(),vehicle.getMunicipalId()));
         }
         return vehicles;
+    }
+
+    @Override
+    public ArrayList<String> getAllVehicleIds(String municipalId) throws SQLException, ClassNotFoundException {
+        return VehicleDAOimpl.getAllVehicleIds(municipalId);
     }
 }

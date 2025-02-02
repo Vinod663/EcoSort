@@ -2,6 +2,7 @@ package org.example.ecosortsoftware.bo.impl;
 
 import org.example.ecosortsoftware.DAO.DAOFactory;
 import org.example.ecosortsoftware.DAO.custom.WardDAO;
+import org.example.ecosortsoftware.DAO.custom.impl.WardDAOimpl;
 import org.example.ecosortsoftware.bo.WardBO;
 import org.example.ecosortsoftware.dto.WardDto;
 import org.example.ecosortsoftware.entity.Ward;
@@ -31,5 +32,10 @@ public class WardBOImpl implements WardBO {
             wards.add(new WardDto(ward.getWardId(),ward.getMunicipalId(),ward.getWardName()));
         }
         return wards;
+    }
+
+    @Override
+    public ArrayList<String> getAllDevisionIds(String municipalId) throws SQLException, ClassNotFoundException {
+        return WardDAOimpl.getAllDevisionIds(municipalId);
     }
 }

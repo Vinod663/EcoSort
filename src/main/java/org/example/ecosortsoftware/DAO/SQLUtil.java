@@ -16,15 +16,24 @@ public class SQLUtil {
             pst.setObject(i+1,obj[i]);
 
         }
-        if(sql.startsWith("select")||sql.startsWith("SELECT")){
-            ResultSet resultSet=pst.executeQuery();
-            return (T)resultSet;
+        try{
+            if(sql.startsWith("select")||sql.startsWith("SELECT")){
+                ResultSet resultSet=pst.executeQuery();
+                return (T)resultSet;
+            }
+            else{
+                int i= pst.executeUpdate();
+                boolean isSaved=i>0;
+                return (T)((Boolean)isSaved);
+            }
+
         }
-        else{
-            int i= pst.executeUpdate();
-            boolean isSaved=i>0;
-            return (T)((Boolean)isSaved);
+
+        catch (SQLException e) {
+            System.err.println("SQL Error: " + e.getMessage());
+            throw e; // Rethrow for logging in the calling method
         }
+
 
     }
 }
