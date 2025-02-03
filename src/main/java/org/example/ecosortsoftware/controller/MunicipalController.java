@@ -13,9 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import org.example.ecosortsoftware.bo.BOFactory;
 import org.example.ecosortsoftware.bo.EmployeeBO;
 import org.example.ecosortsoftware.bo.MunicipalBO;
+import org.example.ecosortsoftware.bo.ScheduleBO;
 import org.example.ecosortsoftware.dto.MunicipalDto;
 import org.example.ecosortsoftware.view.tdm.MunicipalTm;
-import org.example.ecosortsoftware.Model.SheduleModel;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,7 @@ import java.util.ResourceBundle;
 public class MunicipalController implements Initializable {
 
     MunicipalBO municipalBO= (MunicipalBO) BOFactory.getInstance().getBO(BOFactory.BOType.MUNICIPAL);
+    ScheduleBO scheduleBO= (ScheduleBO) BOFactory.getInstance().getBO(BOFactory.BOType.SCHEDULE);
 
     public TableColumn<MunicipalTm, String> MunIdCol;
     public TableColumn<MunicipalTm, String> MunNameCol;
@@ -74,8 +76,8 @@ public class MunicipalController implements Initializable {
 
         //System.out.println(munId);
 
-        SheduleModel sheduleModel = new SheduleModel();
-        checkShedule = sheduleModel.checkMunicipalData(munId);
+       /* SheduleModel sheduleModel = new SheduleModel();*/
+        checkShedule = scheduleBO.checkMunicipalData(munId);
         System.out.println("checkShedule after checkMunicipalData call: " + checkShedule);
         navigateTo("/View/ShedulePage.fxml");
 

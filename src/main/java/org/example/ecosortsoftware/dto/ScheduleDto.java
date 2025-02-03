@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class SheduleDto {
+public class ScheduleDto {
     private String municipalId;
     private String divisionId;
     private String depot;

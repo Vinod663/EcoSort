@@ -12,7 +12,7 @@ public class BOFactory {
 
 
     public enum BOType {
-        LOGIN,EMPLOYEE,VEHICLE,COMPLAINT,MUNICIPAL,INVENTORY,WARD,DISPOSAL,RECYCLING,PLACE_WASTE
+        LOGIN,EMPLOYEE,VEHICLE,COMPLAINT,MUNICIPAL,INVENTORY,WARD,DISPOSAL,RECYCLING,PLACE_WASTE,SCHEDULE
     }
     public SuperBO getBO(BOType type) {
         switch (type) {
@@ -36,6 +36,8 @@ public class BOFactory {
                 return new RecyclingBOImpl();
             case PLACE_WASTE:
                 return new PlaceWasteDataBOImpl();
+            case SCHEDULE:
+                return new ScheduleBOImpl();
             default:
                 return null;
         }

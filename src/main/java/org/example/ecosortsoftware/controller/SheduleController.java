@@ -10,14 +10,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
+import org.example.ecosortsoftware.DAO.custom.impl.ScheduleDAOimpl;
 import org.example.ecosortsoftware.bo.BOFactory;
+import org.example.ecosortsoftware.bo.ScheduleBO;
 import org.example.ecosortsoftware.bo.WardBO;
 import org.example.ecosortsoftware.db.DBConnection;
-import org.example.ecosortsoftware.dto.SheduleDto;
+import org.example.ecosortsoftware.dto.ScheduleDto;
+import org.example.ecosortsoftware.entity.Schedule;
 import org.example.ecosortsoftware.view.tdm.SheduleTm;
 import org.example.ecosortsoftware.dto.WardDto;
 import org.example.ecosortsoftware.view.tdm.WardTm;
-import org.example.ecosortsoftware.Model.SheduleModel;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -30,6 +32,7 @@ import java.util.*;
 
 public class SheduleController implements Initializable {
     WardBO wardBO= (WardBO) BOFactory.getInstance().getBO(BOFactory.BOType.WARD);
+    ScheduleBO scheduleBO= (ScheduleBO) BOFactory.getInstance().getBO(BOFactory.BOType.SCHEDULE);
 
     public Button SheduleReportBtn;
     @FXML
@@ -131,7 +134,7 @@ public class SheduleController implements Initializable {
     @FXML
     private Label WardNameLab;
 
-    SheduleModel sheduleModel = new SheduleModel();
+    //SheduleModel sheduleModel = new SheduleModel();
     @FXML
     void OnClickTable(MouseEvent event) {
         SheduleTm selectedSchedule = SheduleTable.getSelectionModel().getSelectedItem();
@@ -206,8 +209,8 @@ public class SheduleController implements Initializable {
         System.out.println("Recyclable: " + recyclable);
         System.out.println("Non-Recyclable: " + nonRecyclable);
 
-        SheduleDto sheduleDto=new SheduleDto(municipalId,divisionId,depot,degradable,recyclable,nonRecyclable);
-        boolean isUpdate=sheduleModel.updateShedule(sheduleDto);
+        ScheduleDto scheduleDto =new ScheduleDto(municipalId,divisionId,depot,degradable,recyclable,nonRecyclable);
+        boolean isUpdate= scheduleBO.update(scheduleDto);
         if(isUpdate){
             refreshPage();
             new Alert(Alert.AlertType.INFORMATION,"Shedule Updated",ButtonType.OK).show();
@@ -291,7 +294,16 @@ public class SheduleController implements Initializable {
 
             ObservableList <SheduleTm> sheduleTms= FXCollections.observableArrayList();
 
-            ArrayList<SheduleTm> all = sheduleModel.getAll(municipalController.getMunicipalId());
+            ArrayList<ScheduleDto> allFromMunicipal = scheduleBO.getAllFromMunicipal(municipalController.getMunicipalId());
+
+            ArrayList<SheduleTm> all=new ArrayList<>();
+
+            for(ScheduleDto scheduleDto : allFromMunicipal){
+                all.add(new SheduleTm(scheduleDto.getMunicipalId(),scheduleDto.getDivisionId(),scheduleDto.getDepot(),
+                        scheduleDto.getDegradableWaste(),scheduleDto.getRecyclableWaste(),scheduleDto.getNonRecyclableWaste()));
+            }
+
+            /*ArrayList<SheduleTm> all = sheduleModel.getAll(municipalController.getMunicipalId());*/
 
             for(SheduleTm sheduleTm:all){
                 sheduleTms.add(sheduleTm);
@@ -310,11 +322,19 @@ public class SheduleController implements Initializable {
             }
             System.out.println("allWards in loadTable(): " + allWards);
 
-            boolean result = sheduleModel.insertWards(allWards);
+            boolean result = scheduleBO.insertWards(allFromMunicipal);
             if(result){
                 ObservableList <SheduleTm> sheduleTms= FXCollections.observableArrayList();
 
-                ArrayList<SheduleTm> all = sheduleModel.getAll(municipalController.getMunicipalId());
+                ArrayList<ScheduleDto> allFromMunicipal1 = scheduleBO.getAllFromMunicipal(municipalController.getMunicipalId());
+
+                ArrayList<SheduleTm> all=new ArrayList<>();
+                for(ScheduleDto scheduleDto : allFromMunicipal1){
+                    all.add(new SheduleTm(scheduleDto.getMunicipalId(),scheduleDto.getDivisionId(),scheduleDto.getDepot(),
+                            scheduleDto.getDegradableWaste(),scheduleDto.getRecyclableWaste(),scheduleDto.getNonRecyclableWaste()));
+                }
+
+                /*ArrayList<SheduleTm> all = sheduleModel.getAll(municipalController.getMunicipalId());*/
 
                 for(SheduleTm sheduleTm:all){
                     sheduleTms.add(sheduleTm);
