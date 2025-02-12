@@ -1,4 +1,4 @@
-This is the 1st semester Final Project of GDSE-71 that converted into Layered Arcitecture.
+This is the 1st semester Final Project of GDSE-71 that converted into Layered Architecture.
 
 [branch-master: Layered]
 

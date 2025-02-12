@@ -2,7 +2,6 @@ package org.example.ecosortsoftware.DAO.custom.impl;
 
 import org.example.ecosortsoftware.DAO.SQLUtil;
 import org.example.ecosortsoftware.DAO.custom.EmployeeDAO;
-import org.example.ecosortsoftware.view.tdm.EmployeeTm;
 import org.example.ecosortsoftware.entity.Employee;
 
 import java.sql.ResultSet;
@@ -21,12 +20,12 @@ public class EmployeeDAOimpl implements EmployeeDAO {
         return empNames;
     }
 
-    public static ArrayList<EmployeeTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
+    public static ArrayList<Employee> getAll(String municipalId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("select * from employee where municipal_id=?", municipalId);
-        ArrayList<EmployeeTm> empTms = new ArrayList<>();
+        ArrayList<Employee> empTms = new ArrayList<>();
 
         while (resultSet.next()) {
-            EmployeeTm empTm = new EmployeeTm();
+            Employee empTm = new Employee();
 
             empTm.setEmployeeId(resultSet.getString("employee_id"));
             empTm.setEmployeeName(resultSet.getString("name"));

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public interface EmployeeBO extends SuperBO{
     ArrayList<String> getAllEmpIds(String munId) throws SQLException, ClassNotFoundException;
 
-    ArrayList<EmployeeTm> getAll(String municipalId) throws SQLException, ClassNotFoundException;
+    ArrayList<EmployeeDto> getAll(String municipalId) throws SQLException, ClassNotFoundException;
 
     String getNextId() throws SQLException, ClassNotFoundException;
 

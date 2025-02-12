@@ -2,9 +2,8 @@ package org.example.ecosortsoftware.DAO.custom.impl;
 
 import org.example.ecosortsoftware.DAO.SQLUtil;
 import org.example.ecosortsoftware.DAO.custom.WasteCollectionDAO;
-import org.example.ecosortsoftware.dto.WasteCollectionDto;
 import org.example.ecosortsoftware.entity.WasteCollection;
-import org.example.ecosortsoftware.view.tdm.WasteCollectionTm;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -86,12 +85,12 @@ public class WasteCollectionDAOimpl implements WasteCollectionDAO {
     }
 
     @Override
-    public ArrayList<WasteCollectionTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
+    public ArrayList<WasteCollection> getAll(String municipalId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = SQLUtil.execute("select * from waste_collection where municilId=?", municipalId);
-        ArrayList<WasteCollectionTm> collectionTms = new ArrayList<>();
+        ArrayList<WasteCollection> collectionTms = new ArrayList<>();
 
         while (resultSet.next()) {
-            WasteCollectionTm wasteCollectionTm=new WasteCollectionTm();
+            WasteCollection wasteCollectionTm=new WasteCollection();
 
             wasteCollectionTm.setCollectionId(resultSet.getString("collection_id"));
             wasteCollectionTm.setVehicleId(resultSet.getString("vehicle_id"));
@@ -111,11 +110,11 @@ public class WasteCollectionDAOimpl implements WasteCollectionDAO {
         return collectionTms;
     }
 
-    public static ArrayList<WasteCollectionDto> getData(String munId) throws SQLException, ClassNotFoundException {
+    public static ArrayList<WasteCollection> getData(String munId) throws SQLException, ClassNotFoundException {
         ResultSet result = SQLUtil.execute("select DATE_FORMAT(collection_date, '%d-%b') AS date, collection_id, recyclable_waste_amount,degradable_waste_amount,nonRecyclable_waste_amount from waste_collection where municilId=? order by collection_date", munId);
-        ArrayList<WasteCollectionDto> collectionDto = new ArrayList<>();
+        ArrayList<WasteCollection> collectionDto = new ArrayList<>();
         while (result.next()) {
-            WasteCollectionDto dto = new WasteCollectionDto();
+            WasteCollection dto = new WasteCollection();
 
 
             dto.setCollectionDate(result.getString("date"));

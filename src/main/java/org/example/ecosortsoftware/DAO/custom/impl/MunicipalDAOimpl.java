@@ -2,7 +2,6 @@ package org.example.ecosortsoftware.DAO.custom.impl;
 
 import org.example.ecosortsoftware.DAO.SQLUtil;
 import org.example.ecosortsoftware.DAO.custom.MunicipalDAO;
-import org.example.ecosortsoftware.dto.MunicipalDto;
 import org.example.ecosortsoftware.entity.Municipal;
 
 import java.sql.ResultSet;

@@ -4,9 +4,8 @@ import org.example.ecosortsoftware.DAO.DAOFactory;
 import org.example.ecosortsoftware.DAO.custom.ComplaintDAO;
 import org.example.ecosortsoftware.bo.ComplaintBO;
 import org.example.ecosortsoftware.dto.ComplaintsDto;
-import org.example.ecosortsoftware.dto.WardDto;
 import org.example.ecosortsoftware.entity.Complaints;
-import org.example.ecosortsoftware.entity.Ward;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;

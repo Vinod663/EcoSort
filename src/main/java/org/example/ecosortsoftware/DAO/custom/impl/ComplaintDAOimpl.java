@@ -2,7 +2,6 @@ package org.example.ecosortsoftware.DAO.custom.impl;
 
 import org.example.ecosortsoftware.DAO.SQLUtil;
 import org.example.ecosortsoftware.DAO.custom.ComplaintDAO;
-import org.example.ecosortsoftware.view.tdm.ComplaintsTm;
 import org.example.ecosortsoftware.entity.Complaints;
 
 import java.sql.ResultSet;

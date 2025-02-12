@@ -1,7 +1,6 @@
 package org.example.ecosortsoftware.bo;
 
 import org.example.ecosortsoftware.dto.ComplaintsDto;
-import org.example.ecosortsoftware.entity.Complaints;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

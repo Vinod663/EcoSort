@@ -18,7 +18,7 @@ public interface PlaceWasteDataBO extends SuperBO{
 
     double getTotalWaste(String muniId) throws SQLException, ClassNotFoundException;
 
-    ArrayList<WasteCollectionTm> getAllWasteData(String municipalId) throws SQLException, ClassNotFoundException;
+    ArrayList<WasteCollectionDto> getAllWasteData(String municipalId) throws SQLException, ClassNotFoundException;
 
     double getInventoryCapacity(String inventoryId) throws SQLException, ClassNotFoundException;
 

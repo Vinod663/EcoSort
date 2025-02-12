@@ -8,12 +8,11 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.view.JasperViewer;
 import org.example.ecosortsoftware.bo.BOFactory;
 import org.example.ecosortsoftware.bo.DisposalBO;
-import org.example.ecosortsoftware.bo.EmployeeBO;
 import org.example.ecosortsoftware.bo.InventoryBO;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.DisposalDto;
 import org.example.ecosortsoftware.dto.InventoryDto;
-import org.example.ecosortsoftware.entity.Inventory;
+
 
 
 import java.net.URL;

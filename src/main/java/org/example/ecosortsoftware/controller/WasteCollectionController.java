@@ -17,7 +17,6 @@ import org.example.ecosortsoftware.bo.impl.PlaceWasteDataBOImpl;
 import org.example.ecosortsoftware.db.DBConnection;
 import org.example.ecosortsoftware.dto.*;
 import org.example.ecosortsoftware.view.tdm.WasteCollectionTm;
-import org.example.ecosortsoftware.Model.*;
 import org.example.ecosortsoftware.entity.Inventory;
 
 import java.io.IOException;
@@ -544,7 +543,16 @@ public class WasteCollectionController implements Initializable {
     public void loadTable(String municipalId) throws ClassNotFoundException, SQLException {
         ObservableList <WasteCollectionTm> collectionTms= FXCollections.observableArrayList();
 
-        ArrayList<WasteCollectionTm> all = placeWasteBO.getAllWasteData(municipalId);
+        ArrayList<WasteCollectionDto> allWasteData = placeWasteBO.getAllWasteData(municipalId);
+        ArrayList<WasteCollectionTm> all=new ArrayList<>();
+
+        for(WasteCollectionDto collection: allWasteData){
+            all.add(new WasteCollectionTm(collection.getMunicipalId(),collection.getVehicleId(),collection.getInventoryId(),collection.getTotalWasteAmount(),collection.getCollectionDate(),
+                    collection.getDivisionId(),collection.getCollectedWasteAmount(),collection.getDegradableWasteAmount(),collection.getRecyclableWasteAmount(),
+                    collection.getNonRecyclableWasteAmount(),collection.getCollectionId()));
+        }
+
+        /*ArrayList<WasteCollectionTm> all = placeWasteBO.getAllWasteData(municipalId);*/
 
         for(WasteCollectionTm collectionTm:all){
             collectionTms.add(collectionTm);

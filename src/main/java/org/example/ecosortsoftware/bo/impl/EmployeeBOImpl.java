@@ -5,7 +5,6 @@ import org.example.ecosortsoftware.DAO.custom.EmployeeDAO;
 import org.example.ecosortsoftware.DAO.custom.impl.EmployeeDAOimpl;
 import org.example.ecosortsoftware.bo.EmployeeBO;
 import org.example.ecosortsoftware.dto.EmployeeDto;
-import org.example.ecosortsoftware.view.tdm.EmployeeTm;
 import org.example.ecosortsoftware.entity.Employee;
 
 import java.sql.SQLException;
@@ -20,8 +19,15 @@ public class EmployeeBOImpl implements EmployeeBO {
     }
 
     @Override
-    public ArrayList<EmployeeTm> getAll(String municipalId) throws SQLException, ClassNotFoundException {
-        return EmployeeDAOimpl.getAll(municipalId);
+    public ArrayList<EmployeeDto> getAll(String municipalId) throws SQLException, ClassNotFoundException {
+        ArrayList<Employee> all = EmployeeDAOimpl.getAll(municipalId);
+
+        ArrayList<EmployeeDto> employeeDtos = new ArrayList<>();
+        for (Employee employee : all) {
+            employeeDtos.add(new EmployeeDto(employee.getEmployeeId(),employee.getEmployeeName(),employee.getEmail(),
+                    employee.getMunicipalId(),employee.getPhoneNumber()));
+        }
+        return employeeDtos;
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.example.ecosortsoftware.DAO.custom.impl.WasteCollectionDAOimpl;
 import org.example.ecosortsoftware.bo.PlaceWasteDataBO;
 import org.example.ecosortsoftware.dto.*;
 import org.example.ecosortsoftware.entity.*;
-import org.example.ecosortsoftware.view.tdm.WasteCollectionTm;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -50,8 +50,16 @@ public class PlaceWasteDataBOImpl implements PlaceWasteDataBO {
     }
 
     @Override
-    public ArrayList<WasteCollectionTm> getAllWasteData(String municipalId) throws SQLException, ClassNotFoundException {
-        return wasteCollectionDAO.getAll(municipalId);
+    public ArrayList<WasteCollectionDto> getAllWasteData(String municipalId) throws SQLException, ClassNotFoundException {
+        ArrayList<WasteCollection> all = wasteCollectionDAO.getAll(municipalId);
+        ArrayList<WasteCollectionDto> waste=new ArrayList<>();
+
+        for (WasteCollection collection : all) {
+            waste.add(new WasteCollectionDto(collection.getMunicipalId(),collection.getVehicleId(),collection.getInventoryId(),collection.getTotalWasteAmount(),collection.getCollectionDate(),
+                    collection.getDivisionId(),collection.getCollectedWasteAmount(),collection.getDegradableWasteAmount(),collection.getRecyclableWasteAmount(),
+                    collection.getNonRecyclableWasteAmount(),collection.getCollectionId()));
+        }
+        return waste;
     }
 
     @Override
@@ -131,7 +139,15 @@ public class PlaceWasteDataBOImpl implements PlaceWasteDataBO {
 
     @Override
     public ArrayList<WasteCollectionDto> getData(String munId) throws SQLException, ClassNotFoundException {
-        return WasteCollectionDAOimpl.getData(munId);
+        ArrayList<WasteCollection> data = WasteCollectionDAOimpl.getData(munId);
+        ArrayList<WasteCollectionDto> dtos = new ArrayList<>();
+        for(WasteCollection collectionDto : data){
+            dtos.add(new WasteCollectionDto(collectionDto.getCollectionId(),collectionDto.getVehicleId(),
+                    collectionDto.getInventoryId(),collectionDto.getTotalWasteAmount(),collectionDto.getCollectionDate(),collectionDto.getDivisionId(),
+                    collectionDto.getCollectedWasteAmount(),collectionDto.getDegradableWasteAmount(),collectionDto.getRecyclableWasteAmount(),
+                    collectionDto.getNonRecyclableWasteAmount(),collectionDto.getMunicipalId()));
+        }
+        return dtos;
     }
 
 }
