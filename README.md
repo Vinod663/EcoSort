@@ -66,7 +66,7 @@ src/
 ### Setup Steps
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Vinod663/EcoSort.gitzzzzzzz
+   git clone https://github.com/Vinod663/EcoSort.git
    ```
 
 2. **Set up the database:**
