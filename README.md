@@ -55,11 +55,53 @@ src/
 └── main/SerenityApp.java
 ```
 
+## ⚙️ Installation Guide
+
+### Prerequisites
+* Java 17+
+* MySQL Server
+* Maven
+* An IDE (like IntelliJ IDEA or Eclipse)
+
+### Setup Steps
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Vinod663/EcoSort.gitzzzzzzz
+   ```
+
+2. **Set up the database:**
+    * Import the provided SQL script (`database.sql`) into your MySQL server.
+    
+
+
+3. **Install dependencies:**
+   ```bash
+   mvn clean install
+   ```
+
+4. **Run the application:**
+    * Open the project in your IDE.
+    * Run the main class `Ecosort.java`.
+---
+
+## 📌 Future Enhancements
+- Integration with mobile apps for waste pickup scheduling.
+- Real-time waste level sensors and smart bin support.
+- AI-based suggestions for optimal recycling methods.
+- Community reward system for sustainable practices.
+- Multi-language support for wider accessibility.
+
+---
+
+## 🤝 Contribution
+We welcome contributors who are passionate about sustainability and software innovation!  
+Feel free to fork the project and submit a pull request.  
+Let’s collaborate to create a cleaner, greener future together.
+
 ---
 
 ## 🧾 License
-
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
 
 ---
 
