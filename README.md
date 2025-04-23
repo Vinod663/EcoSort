@@ -2,7 +2,7 @@
 
 > **Where Clean Code Meets Clean Communities**
 
-This branch reflects the **Layered Architecture** implementation of ECOSORT — a software tool designed for managing municipal waste collection, segregation, and recycling.
+This branch reflects the **MVC Architecture** implementation of ECOSORT — a software tool designed for managing municipal waste collection, segregation, and recycling.
 
 ---
 
